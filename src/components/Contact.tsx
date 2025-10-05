@@ -88,10 +88,14 @@ const Contact = () => {
               className="glass-strong hover:scale-105 transition-transform group"
               asChild
             >
-              <a href="mailto:anaswagih35@gmail.com">
-                <Send className="w-5 h-5 mr-2 group-hover:translate-x-1 transition-transform" />
-                Send me a message
-              </a>
+<a
+  href="mailto:anaswagih35@gmail.com"
+  className="flex items-center group text-blue-500 hover:text-blue-700 transition-colors"
+>
+  <Send className="w-5 h-5 mr-2 group-hover:translate-x-1 transition-transform" />
+  Send me a message
+</a>
+
             </Button>
           </div>
         </div>
