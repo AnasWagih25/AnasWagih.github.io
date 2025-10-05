@@ -7,25 +7,25 @@ const Projects = () => {
       title: "nRF52840-based IoT Microcontroller Board",
       description: "Designed a custom nRF52840-based board with USB connectivity, I2C support, power regulation, and debugging features. Integrated power management, ESD protection, and GPIO expandability for versatile embedded applications.",
       tags: ["Hardware Design", "IoT", "nRF52840", "PCB Design"],
-      link: "#"
+      link: "https://github.com/AnasWagih25/nRF52840_Microcontroller_Board"
     },
     {
       title: "ESP32-Based GPS Live Tracker with Web Map",
       description: "Developed a real-time GPS tracking system on ESP32, integrating the u-blox NEO-6M module and TinyGPS++ for accurate positioning, with auto-refreshing functionality every 3 seconds. Hosted an interactive Leaflet.js map directly on the ESP32, using its built-in Wi-Fi as a webserver—no cloud dependencies—enabling instant live location tracking via the device's IP address.",
       tags: ["ESP32", "GPS", "IoT", "Web Server", "Real-time"],
-      link: "#"
+      link: "https://github.com/AnasWagih25/ESP32_GPS_Live_Tracker_w_Web-Map"
     },
     {
       title: "Sign Language Interpreter",
       description: "Leverages deep learning algorithms to accurately interpret and translate sign language gestures into labeled text in real-time with a 0.9+ Accuracy Score.",
       tags: ["Deep Learning", "Computer Vision", "TensorFlow", "Real-time"],
-      link: "#"
+      link: "https://github.com/AnasWagih25/Sign_Language_Interpreter"
     },
     {
-      title: "AI-Enabled Real-Time Mood LED Light",
-      description: "Built a real-time mood-detecting LED system on Raspberry Pi using Vosk speech recognition, TextBlob sentiment analysis, and a 12-LED NeoPixel ring. Implemented Python-based streaming audio processing and dynamic LED control with PWM-driven effects for positive, negative, neutral, and silent moods.",
+      title: "Esp32CAM-Powered Object Detection Model",
+      description: "This project demonstrates real-time object detection using an ESP32-CAM and a model trained on Edge Impulse: https://studio.edgeimpulse.com/public/686200/live. The model identifies six object classes with a 95% F1 score and runs directly on the ESP32-CAM using an exported Arduino library.",
       tags: ["AI", "Raspberry Pi", "Speech Recognition", "Python", "IoT"],
-      link: "#"
+      link: "https://github.com/AnasWagih25/Esp32CAM_Object_Detection_Model"
     }
   ];
 
