@@ -28,7 +28,7 @@ const Certifications = () => {
     {
       title: "Arm Cortex-M Architecture and Software Development",
       issuer: "armEducation",
-      courses: "1 Course",
+      courses: "4 Course",
       link: "https://coursera.org/share/d487e16df055fc747abf454e14d7f9f8",
       status: "Completed"
     },
