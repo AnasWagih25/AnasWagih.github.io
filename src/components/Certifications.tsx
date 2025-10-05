@@ -1,3 +1,4 @@
+// src/components/Certifications.tsx
 import { Award, ExternalLink } from "lucide-react";
 import { Button } from "./ui/button";
 
@@ -7,36 +8,36 @@ const Certifications = () => {
       title: "Machine Learning Specialization",
       issuer: "DeepLearning.AI + Stanford University",
       courses: "3 Courses",
-      link: "#",
-      status: "Completed"
-    },
-    {
-      title: "Advanced Embedded Systems on Arm",
-      issuer: "ArmEducationX",
-      courses: "2 Courses",
-      link: "#",
-      status: "Completed"
-    },
-    {
-      title: "Arm Cortex-M Architecture and Software Development",
-      issuer: "ArmEducation",
-      courses: "4 Courses",
-      link: "#",
-      status: "Completed"
-    },
-    {
-      title: "Python (Basic) Certification",
-      issuer: "HackerRank",
-      courses: "1 Course",
-      link: "#",
+      link: "https://coursera.org/share/5142a9edb67ef1fdd43f9012443603c9",
       status: "Completed"
     },
     {
       title: "Deep Learning Specialization",
       issuer: "DeepLearning.AI",
       courses: "5 Courses",
-      link: "#",
+      link: "", // not completed yet
       status: "In Progress"
+    },
+    {
+      title: "Advanced Embedded Systems on Arm",
+      issuer: " arm x edX",
+      courses: "2 Courses",
+      link: "http://credentials.edx.org/credentials/d6f113333f9442a48f7860206b88cac4/",
+      status: "Completed"
+    },
+    {
+      title: "Arm Cortex-M Architecture and Software Development",
+      issuer: "Coursera",
+      courses: "1 Course",
+      link: "https://coursera.org/share/d487e16df055fc747abf454e14d7f9f8",
+      status: "Completed"
+    },
+    {
+      title: "Python Certification",
+      issuer: "HackerRank",
+      courses: "1 Course",
+      link: "https://www.hackerrank.com/certificates/iframe/c97729ed98bb",
+      status: "Completed"
     }
   ];
 
@@ -68,23 +69,40 @@ const Certifications = () => {
               </div>
               
               <div className="flex items-center justify-between mt-4 pt-4 border-t border-border">
-                <span className={`text-xs px-3 py-1 rounded-full ${
-                  cert.status === "Completed" 
-                    ? "bg-primary/20 text-primary" 
-                    : "bg-accent/20 text-accent"
-                }`}>
+                <span
+                  className={`text-xs px-3 py-1 rounded-full ${
+                    cert.status === "Completed"
+                      ? "bg-primary/20 text-primary"
+                      : "bg-accent/20 text-accent"
+                  }`}
+                >
                   {cert.status}
                 </span>
-                <Button
-                  size="sm"
-                  variant="ghost"
-                  className="hover:scale-110 transition-transform p-2 h-auto"
-                  asChild
-                >
-                  <a href={cert.link} target="_blank" rel="noopener noreferrer">
+                {cert.link ? (
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    className="hover:scale-110 transition-transform p-2 h-auto"
+                    asChild
+                  >
+                    <a
+                      href={cert.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <ExternalLink className="w-4 h-4" />
+                    </a>
+                  </Button>
+                ) : (
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    className="opacity-50 cursor-not-allowed p-2 h-auto"
+                    disabled
+                  >
                     <ExternalLink className="w-4 h-4" />
-                  </a>
-                </Button>
+                  </Button>
+                )}
               </div>
             </div>
           ))}
