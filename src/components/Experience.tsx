@@ -1,0 +1,74 @@
+import { Briefcase, Calendar } from "lucide-react";
+
+const Experience = () => {
+  const experiences = [
+    {
+      role: "R&D Intern",
+      company: "Clixsys",
+      period: "07/2025 – On-Going",
+      description: [
+        "Designed a Matter-based multi-endpoint system that groups several functions under a single node, cutting controller boards per room by ~70% and ensuring more consistent, reliable control.",
+        "Developed a cross-platform (iOS/Android) home automation app using Quasar + Capacitor, enabling matter-based device control through the app, expanding accessibility for end-users.",
+        "Built an AI-powered in-app assistant using OpenAI's ChatGPT API to control smart home devices, provide real-time weather/time data, and support various AI voices—response time of approx. 2 seconds."
+      ],
+      color: "primary"
+    },
+    {
+      role: "Embedded Systems Trainee",
+      company: "National Telecommunication Institute",
+      period: "08/2025 – 09/2025",
+      description: [
+        "Hands-on embedded C programming for AVR: GPIO, ADC, timers, interrupts, USART, SPI, I2C.",
+        "Applied data structures & computer architecture concepts in virtual labs using Proteus and Microchip Studio."
+      ],
+      color: "secondary"
+    }
+  ];
+
+  return (
+    <section id="experience" className="py-20 px-4">
+      <div className="max-w-6xl mx-auto">
+        <h2 className="text-4xl md:text-5xl font-display font-bold mb-12 text-center">
+          <span className="gradient-text">Experience</span>
+        </h2>
+        
+        <div className="space-y-8">
+          {experiences.map((exp, index) => (
+            <div
+              key={index}
+              className="glass-strong rounded-3xl p-8 hover:scale-[1.02] transition-all animate-fade-in"
+              style={{ animationDelay: `${index * 0.2}s` }}
+            >
+              <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-6">
+                <div className="flex-1">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className={`p-2 rounded-lg bg-${exp.color}/20`}>
+                      <Briefcase className={`w-5 h-5 text-${exp.color}`} />
+                    </div>
+                    <h3 className="text-2xl font-display font-semibold">{exp.role}</h3>
+                  </div>
+                  <p className={`text-lg font-medium text-${exp.color} mb-2`}>{exp.company}</p>
+                </div>
+                <div className="flex items-center gap-2 text-muted-foreground mt-2 md:mt-0">
+                  <Calendar className="w-4 h-4" />
+                  <span className="font-medium">{exp.period}</span>
+                </div>
+              </div>
+              
+              <ul className="space-y-3">
+                {exp.description.map((item, i) => (
+                  <li key={i} className="flex gap-3 text-muted-foreground leading-relaxed">
+                    <span className={`text-${exp.color} font-bold mt-1`}>•</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Experience;
