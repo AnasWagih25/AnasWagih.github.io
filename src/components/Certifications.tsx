@@ -20,14 +20,14 @@ const Certifications = () => {
     },
     {
       title: "Advanced Embedded Systems on Arm",
-      issuer: " arm x edX",
+      issuer: " armEducation ",
       courses: "2 Courses",
       link: "http://credentials.edx.org/credentials/d6f113333f9442a48f7860206b88cac4/",
       status: "Completed"
     },
     {
       title: "Arm Cortex-M Architecture and Software Development",
-      issuer: "Coursera",
+      issuer: "armEducation",
       courses: "1 Course",
       link: "https://coursera.org/share/d487e16df055fc747abf454e14d7f9f8",
       status: "Completed"
