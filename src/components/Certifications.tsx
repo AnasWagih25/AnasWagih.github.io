@@ -20,22 +20,22 @@ const Certifications = () => {
     },
     {
       title: "Advanced Embedded Systems on Arm",
-      issuer: " armEducation ",
+      issuer: " ArmEducationX ",
       courses: "2 Courses",
       link: "http://credentials.edx.org/credentials/d6f113333f9442a48f7860206b88cac4/",
       status: "Completed"
     },
     {
       title: "Arm Cortex-M Architecture and Software Development",
-      issuer: "armEducation",
+      issuer: " ArmEducationX ",
       courses: "4 Course",
       link: "https://coursera.org/share/d487e16df055fc747abf454e14d7f9f8",
       status: "Completed"
     },
     {
       title: "Python Certification",
-      issuer: "HackerRank",
-      courses: "1 Course",
+      issuer: " HackerRank ",
+      courses: "",
       link: "https://www.hackerrank.com/certificates/iframe/c97729ed98bb",
       status: "Completed"
     }
