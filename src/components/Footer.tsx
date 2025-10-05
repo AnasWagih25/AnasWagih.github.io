@@ -7,7 +7,7 @@ const Footer = () => {
         <p className="text-muted-foreground flex items-center justify-center gap-2 flex-wrap">
           <span>© {new Date().getFullYear()} Anas M. Wagih.</span>
           <span className="flex items-center gap-1">
-            Built with <Heart className="w-4 h-4 text-accent fill-accent" /> using React & TypeScript
+            
           </span>
         </p>
         <p className="text-sm text-muted-foreground/70 mt-2">
