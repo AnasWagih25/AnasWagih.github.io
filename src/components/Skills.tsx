@@ -8,25 +8,25 @@ const Skills = () => {
     {
       title: "Programming Languages",
       icon: Code,
-      skills: ["Python", "Embedded C", "C++", "MATLAB", "VHDL", "Verilog"],
+      skills: ["Python", "R", "Embedded C", "C++", "MATLAB", "VHDL", "JavaScript"],
       color: "primary"
     },
     {
       title: "Embedded & Hardware",
       icon: Cpu,
-      skills: ["AVR", "ARM Cortex-M", "ESP32", "nRF52840", "STM32", "Raspberry Pi", "Arduino"],
+      skills: ["AVR", "ARM Cortex-M", "Esp32 MCUS and Esp32CAM", "nRF52840", "STM32", "Raspberry Pi", "Arduino", "PIC MCUs"],
       color: "secondary"
     },
     {
       title: "Tools & Software",
       icon: Wrench,
-      skills: ["KiCAD", "Proteus", "Microchip Studio", "VS Code", "Git", "Altium Designer"],
+      skills: ["KiCAD", "Proteus", "Microchip Studio", "VS Code", "Git", "Multisim", "ModelSim-Intel", "Altium Designer"],
       color: "accent"
     },
     {
       title: "Technologies & Frameworks",
       icon: Layers,
-      skills: ["TensorFlow", "PyTorch", "OpenCV", "MQTT", "Matter Protocol", "I2C", "SPI", "UART", "Quasar", "Capacitor"],
+      skills: ["TensorFlow", "PyTorch", "OpenCV", "MQTT", "Matter Protocol", "PlatformIO", "Quasar", "Capacitor", "PySpark", "TinyML", "Embedded Communication Protocols"],
       color: "primary"
     }
   ];
