@@ -26,7 +26,7 @@ const Skills = () => {
     {
       title: "Technologies & Frameworks",
       icon: Layers,
-      skills: ["TensorFlow", "PyTorch", "OpenCV", "MQTT", "Matter Protocol", "Numpy & Pandas", "PlatformIO", "Quasar", "Capacitor", "PySpark", "TinyML", "Embedded Communication Protocols"],
+      skills: ["TensorFlow", "PyTorch", "OpenCV", "MQTT", "Matter Protocol", "Numpy & Pandas", "PlatformIO", "Quasar", "Capacitor", "PySpark", "TinyML"],
       color: "primary"
     }
   ];
