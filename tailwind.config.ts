@@ -14,9 +14,9 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['Outfit', 'sans-serif'],
-        display: ['Montserrat', 'sans-serif'],
-        accent: ['Syne', 'sans-serif'],
+        sans: ['NOHEMI', 'sans-serif'],
+        display: ['Galgo', 'NOHEMI', 'sans-serif'],
+        accent: ['NOHEMI', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
