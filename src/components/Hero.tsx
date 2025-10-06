@@ -1,7 +1,10 @@
 import { ArrowDown, Github, Linkedin, Mail, Phone } from "lucide-react";
 import { Button } from "./ui/button";
+import { useRipple } from "@/hooks/useRipple";
 
 const Hero = () => {
+  const createRipple = useRipple();
+  
   const scrollToSection = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
@@ -36,8 +39,11 @@ const Hero = () => {
           <div className="flex flex-wrap gap-4 justify-center mb-12">
             <Button
               size="lg"
-              className="glass-strong hover:scale-105 transition-transform group"
-              onClick={() => scrollToSection("projects")}
+              className="glass-strong hover:scale-110 transition-all group relative overflow-hidden"
+              onClick={(e) => {
+                createRipple(e);
+                scrollToSection("projects");
+              }}
             >
               View My Work
               <ArrowDown className="ml-2 w-4 h-4 group-hover:translate-y-1 transition-transform" />
@@ -45,8 +51,11 @@ const Hero = () => {
             <Button
               size="lg"
               variant="outline"
-              className="glass border-2 hover:scale-105 transition-transform"
-              onClick={() => scrollToSection("contact")}
+              className="glass border-2 hover:scale-110 transition-all relative overflow-hidden"
+              onClick={(e) => {
+                createRipple(e);
+                scrollToSection("contact");
+              }}
             >
               Get In Touch
             </Button>
@@ -57,32 +66,36 @@ const Hero = () => {
               href="https://github.com/AnasWagih25"
               target="_blank"
               rel="noopener noreferrer"
-              className="glass px-6 py-3 rounded-full hover:scale-110 transition-all hover:animate-glow flex items-center gap-2"
+              className="glass px-6 py-3 rounded-full hover:scale-110 transition-all hover:shadow-xl hover:shadow-primary/30 flex items-center gap-2 relative overflow-hidden group"
+              onClick={(e) => createRipple(e)}
             >
-              <Github className="w-5 h-5" />
+              <Github className="w-5 h-5 group-hover:rotate-12 transition-transform" />
               <span className="font-medium">GitHub</span>
             </a>
             <a
               href="https://linkedin.com/in/AnasWagih"
               target="_blank"
               rel="noopener noreferrer"
-              className="glass px-6 py-3 rounded-full hover:scale-110 transition-all hover:animate-glow flex items-center gap-2"
+              className="glass px-6 py-3 rounded-full hover:scale-110 transition-all hover:shadow-xl hover:shadow-secondary/30 flex items-center gap-2 relative overflow-hidden group"
+              onClick={(e) => createRipple(e)}
             >
-              <Linkedin className="w-5 h-5" />
+              <Linkedin className="w-5 h-5 group-hover:rotate-12 transition-transform" />
               <span className="font-medium">LinkedIn</span>
             </a>
             <a
               href="mailto:anaswagih35@gmail.com"
-              className="glass px-6 py-3 rounded-full hover:scale-110 transition-all hover:animate-glow flex items-center gap-2"
+              className="glass px-6 py-3 rounded-full hover:scale-110 transition-all hover:shadow-xl hover:shadow-accent/30 flex items-center gap-2 relative overflow-hidden group"
+              onClick={(e) => createRipple(e)}
             >
-              <Mail className="w-5 h-5" />
+              <Mail className="w-5 h-5 group-hover:rotate-12 transition-transform" />
               <span className="font-medium">Email</span>
             </a>
             <a
               href="tel:+201020065576"
-              className="glass px-6 py-3 rounded-full hover:scale-110 transition-all hover:animate-glow flex items-center gap-2"
+              className="glass px-6 py-3 rounded-full hover:scale-110 transition-all hover:shadow-xl hover:shadow-primary/30 flex items-center gap-2 relative overflow-hidden group"
+              onClick={(e) => createRipple(e)}
             >
-              <Phone className="w-5 h-5" />
+              <Phone className="w-5 h-5 group-hover:rotate-12 transition-transform" />
               <span className="font-medium">Call</span>
             </a>
           </div>

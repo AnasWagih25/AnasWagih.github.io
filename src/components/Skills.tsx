@@ -1,6 +1,9 @@
 import { Code, Cpu, Wrench, Layers } from "lucide-react";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { useRipple } from "@/hooks/useRipple";
 
 const Skills = () => {
+  const createRipple = useRipple();
   const skillCategories = [
     {
       title: "Programming Languages",
@@ -38,31 +41,43 @@ const Skills = () => {
         <div className="grid md:grid-cols-2 gap-6">
           {skillCategories.map((category, index) => {
             const Icon = category.icon;
-            return (
-              <div
-                key={index}
-                className="glass-strong rounded-3xl p-8 hover:scale-105 transition-all animate-fade-in"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <div className="flex items-center gap-3 mb-6">
-                  <div className={`p-3 rounded-xl bg-${category.color}/20`}>
-                    <Icon className={`w-6 h-6 text-${category.color}`} />
+            const SkillCategory = () => {
+              const { ref, isVisible } = useScrollReveal();
+              
+              return (
+                <div
+                  ref={ref}
+                  className={`glass-strong rounded-3xl p-8 interactive-hover transition-all duration-700 ${
+                    isVisible ? 'reveal-scale opacity-100' : 'opacity-0'
+                  }`}
+                  style={{ transitionDelay: `${index * 100}ms` }}
+                >
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className={`p-3 rounded-xl bg-${category.color}/20 transition-transform hover:scale-110 hover:rotate-6`}>
+                      <Icon className={`w-6 h-6 text-${category.color}`} />
+                    </div>
+                    <h3 className="text-2xl font-display font-semibold">{category.title}</h3>
                   </div>
-                  <h3 className="text-2xl font-display font-semibold">{category.title}</h3>
+                  
+                  <div className="flex flex-wrap gap-2">
+                    {category.skills.map((skill, i) => (
+                      <span
+                        key={i}
+                        className="glass px-4 py-2 rounded-full text-sm font-medium hover:scale-110 hover:bg-primary/20 transition-all cursor-default relative overflow-hidden"
+                        onClick={(e) => createRipple(e)}
+                        style={{
+                          animationDelay: `${i * 50}ms`,
+                        }}
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-                
-                <div className="flex flex-wrap gap-2">
-                  {category.skills.map((skill, i) => (
-                    <span
-                      key={i}
-                      className="glass px-4 py-2 rounded-full text-sm font-medium hover:scale-110 transition-transform cursor-default"
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            );
+              );
+            };
+            
+            return <SkillCategory key={index} />;
           })}
         </div>
       </div>

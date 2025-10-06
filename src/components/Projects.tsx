@@ -1,7 +1,11 @@
 import { ExternalLink, Github } from "lucide-react";
 import { Button } from "./ui/button";
+import InteractiveCard from "./InteractiveCard";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { useRipple } from "@/hooks/useRipple";
 
 const Projects = () => {
+  const createRipple = useRipple();
   const projects = [
     {
       title: "nRF52840-based IoT Microcontroller Board",
@@ -29,63 +33,80 @@ const Projects = () => {
     }
   ];
 
+
+const ProjectCard = ({ project, index }: { project: any; index: number }) => {
+  const { ref, isVisible } = useScrollReveal();
+  const createRipple = useRipple();
+
+  return (
+    <div
+      ref={ref}
+      className={`transition-all duration-700 ${
+        isVisible ? 'reveal-up opacity-100' : 'opacity-0'
+      }`}
+      style={{ transitionDelay: `${index * 150}ms` }}
+    >
+      <InteractiveCard className="gradient-border rounded-3xl p-8 interactive-hover group">
+        <h3 className="text-2xl font-display font-semibold mb-4 group-hover:gradient-text transition-all">
+          {project.title}
+        </h3>
+        
+        <p className="text-muted-foreground leading-relaxed mb-6">
+          {project.description}
+        </p>
+        
+        <div className="flex flex-wrap gap-2 mb-6">
+          {project.tags.map((tag: string, i: number) => (
+            <span
+              key={i}
+              className="glass px-3 py-1 rounded-full text-xs font-medium hover:scale-110 hover:bg-primary/20 transition-all cursor-default"
+              onClick={(e) => createRipple(e)}
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+        
+        <div className="flex gap-3">
+          <Button
+            size="sm"
+            variant="outline"
+            className="glass border hover:scale-110 transition-all relative overflow-hidden"
+            onClick={(e) => createRipple(e)}
+            asChild
+          >
+            <a href={project.link} target="_blank" rel="noopener noreferrer">
+              <Github className="w-4 h-4 mr-2" />
+              View Code
+            </a>
+          </Button>
+          <Button
+            size="sm"
+            className="glass-strong hover:scale-110 transition-all relative overflow-hidden"
+            onClick={(e) => createRipple(e)}
+            asChild
+          >
+            <a href={project.link} target="_blank" rel="noopener noreferrer">
+              <ExternalLink className="w-4 h-4 mr-2" />
+              Learn More
+            </a>
+          </Button>
+        </div>
+      </InteractiveCard>
+    </div>
+  );
+};
+
   return (
     <section id="projects" className="py-20 px-4">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-display font-bold mb-12 text-center">
+        <h2 className="text-4xl md:text-5xl font-display font-bold mb-12 text-center animate-fade-in-up">
           <span className="gradient-text">Featured Projects</span>
         </h2>
         
         <div className="grid md:grid-cols-2 gap-6">
           {projects.map((project, index) => (
-            <div
-              key={index}
-              className="gradient-border rounded-3xl p-8 hover:scale-105 transition-all group animate-scale-in"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <h3 className="text-2xl font-display font-semibold mb-4 group-hover:gradient-text transition-all">
-                {project.title}
-              </h3>
-              
-              <p className="text-muted-foreground leading-relaxed mb-6">
-                {project.description}
-              </p>
-              
-              <div className="flex flex-wrap gap-2 mb-6">
-                {project.tags.map((tag, i) => (
-                  <span
-                    key={i}
-                    className="glass px-3 py-1 rounded-full text-xs font-medium"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-              
-              <div className="flex gap-3">
-                <Button
-                  size="sm"
-                  variant="outline"
-                  className="glass border hover:scale-110 transition-transform"
-                  asChild
-                >
-                  <a href={project.link} target="_blank" rel="noopener noreferrer">
-                    <Github className="w-4 h-4 mr-2" />
-                    View Code
-                  </a>
-                </Button>
-                <Button
-                  size="sm"
-                  className="glass-strong hover:scale-110 transition-transform"
-                  asChild
-                >
-                  <a href={project.link} target="_blank" rel="noopener noreferrer">
-                    <ExternalLink className="w-4 h-4 mr-2" />
-                    Learn More
-                  </a>
-                </Button>
-              </div>
-            </div>
+            <ProjectCard key={index} project={project} index={index} />
           ))}
         </div>
       </div>
