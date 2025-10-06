@@ -8,7 +8,7 @@ const Skills = () => {
     {
       title: "Programming Languages",
       icon: Code,
-      skills: ["Python", "R", "Embedded C", "C++", "MATLAB", "VHDL", "JavaScript"],
+      skills: ["Python", "R", "C++", "Embedded C", "MATLAB", "VHDL", "JavaScript"],
       color: "primary"
     },
     {
@@ -20,13 +20,13 @@ const Skills = () => {
     {
       title: "Tools & Software",
       icon: Wrench,
-      skills: ["KiCAD", "Proteus", "Microchip Studio", "VS Code", "Git", "Multisim", "ModelSim-Intel", "Altium Designer"],
+      skills: ["KiCAD", "Proteus", "Microchip Studio", "VS Code", "Git", "STM32Cubeide", "Multisim", "Anaconda", "ModelSim-Intel", "Altium Designer"],
       color: "accent"
     },
     {
       title: "Technologies & Frameworks",
       icon: Layers,
-      skills: ["TensorFlow", "PyTorch", "OpenCV", "MQTT", "Matter Protocol", "PlatformIO", "Quasar", "Capacitor", "PySpark", "TinyML", "Embedded Communication Protocols"],
+      skills: ["TensorFlow", "PyTorch", "OpenCV", "MQTT", "Matter Protocol", "Numpy & Pandas", "PlatformIO", "Quasar", "Capacitor", "PySpark", "TinyML", "Embedded Communication Protocols"],
       color: "primary"
     }
   ];
