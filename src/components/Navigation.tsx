@@ -31,13 +31,13 @@ const Navigation = () => {
   ];
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled ? "glass-strong shadow-lg" : "bg-transparent"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
-        <div className="flex items-center justify-between h-20">
+    <nav className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 lg:px-8 pt-6">
+      <div
+        className={`max-w-6xl mx-auto rounded-3xl transition-all duration-500 ${
+          isScrolled ? "glass-strong shadow-2xl shadow-primary/10" : "glass border border-white/20"
+        }`}
+      >
+        <div className="flex items-center justify-between h-20 px-6 sm:px-8 lg:px-10">
           <button
             onClick={() => scrollToSection("hero")}
             className="text-2xl font-display font-black gradient-text hover:scale-110 transition-all duration-300 tracking-tight"
@@ -72,8 +72,8 @@ const Navigation = () => {
 
       {/* Mobile Navigation */}
       {isMobileMenuOpen && (
-        <div className="md:hidden glass-strong border-t border-white/10 backdrop-blur-xl">
-          <div className="px-4 py-4 space-y-2">
+        <div className="md:hidden mt-2 max-w-6xl mx-auto glass-strong rounded-3xl border border-white/10 backdrop-blur-xl shadow-2xl">
+          <div className="px-6 py-6 space-y-2">
             {navItems.map((item) => (
               <button
                 key={item.id}
