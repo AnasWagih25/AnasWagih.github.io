@@ -10,7 +10,6 @@ const Experience = () => {
         "Developed a cross-platform (iOS/Android) home automation app using Quasar + Capacitor, enabling MQTT-based device control through the app, expanding accessibility for end-users.",
         "Built an AI-powered in-app assistant using OpenAI's ChatGPT API to control smart home devices, provide real-time weather/time data, and support various AI voices—response time of approx. 2 seconds.",
         "Designed a MQTT-based multi-endpoint system that groups several functions under a single node, cutting controller boards per room by ~70% and ensuring more consistent, reliable control."
-        ""
       ],
       color: "primary"
     },
