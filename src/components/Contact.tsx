@@ -42,7 +42,7 @@ const Contact = () => {
             </a>
             
             <a
-              href="https://linkedin.com/in/AnasWagih"
+              href="https://www.linkedin.com/in/anas-wagih-9423a7232/"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-4 p-6 glass rounded-2xl hover:scale-105 hover:shadow-2xl hover:shadow-accent/20 transition-all duration-300 group border border-white/10 hover:border-accent/30"
