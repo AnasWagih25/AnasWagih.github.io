@@ -3,13 +3,14 @@ import { Briefcase, Calendar } from "lucide-react";
 const Experience = () => {
   const experiences = [
     {
-      role: "R&D Intern",
+      role: "R&D Engineer",
       company: "Clixsys",
       period: "07/2025 – On-Going",
       description: [
-        "Designed a Matter-based multi-endpoint system that groups several functions under a single node, cutting controller boards per room by ~70% and ensuring more consistent, reliable control.",
-        "Developed a cross-platform (iOS/Android) home automation app using Quasar + Capacitor, enabling matter-based device control through the app, expanding accessibility for end-users.",
-        "Built an AI-powered in-app assistant using OpenAI's ChatGPT API to control smart home devices, provide real-time weather/time data, and support various AI voices—response time of approx. 2 seconds."
+        "Developed a cross-platform (iOS/Android) home automation app using Quasar + Capacitor, enabling MQTT-based device control through the app, expanding accessibility for end-users.",
+        "Built an AI-powered in-app assistant using OpenAI's ChatGPT API to control smart home devices, provide real-time weather/time data, and support various AI voices—response time of approx. 2 seconds.",
+        "Designed a MQTT-based multi-endpoint system that groups several functions under a single node, cutting controller boards per room by ~70% and ensuring more consistent, reliable control."
+        ""
       ],
       color: "primary"
     },
@@ -19,7 +20,8 @@ const Experience = () => {
       period: "08/2025 – 09/2025",
       description: [
         "Hands-on embedded C programming for AVR: GPIO, ADC, timers, interrupts, USART, SPI, I2C.",
-        "Applied data structures & computer architecture concepts in virtual labs using Proteus and Microchip Studio."
+        "Applied data structures & computer architecture concepts in virtual labs using Proteus and Microchip Studio.",
+        "Designed a full control system for 'Automotive' using relative sensors and modules - simulating their functions"
       ],
       color: "secondary"
     }
