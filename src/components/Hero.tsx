@@ -36,7 +36,7 @@ const Hero = () => {
           
           <h1 
             ref={titleRef}
-            className={`text-6xl md:text-8xl lg:text-9xl font-display font-black mb-6 leading-tight transition-all duration-1000 ${
+            className={`text-5xl md:text-7xl lg:text-8xl font-display font-black mb-6 leading-tight transition-all duration-1000 px-4 ${
               titleVisible ? 'reveal-up opacity-100' : 'opacity-0'
             }`}
           >
@@ -47,7 +47,7 @@ const Hero = () => {
           
           <h2 
             ref={subtitleRef}
-            className={`text-2xl md:text-4xl font-display font-semibold mb-6 text-foreground/90 transition-all duration-1000 ${
+            className={`text-xl md:text-3xl lg:text-4xl font-display font-semibold mb-6 text-foreground/90 transition-all duration-1000 px-4 ${
               subtitleVisible ? 'reveal-up opacity-100' : 'opacity-0'
             }`}
           >
