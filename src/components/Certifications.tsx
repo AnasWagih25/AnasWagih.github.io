@@ -1,8 +1,12 @@
 // src/components/Certifications.tsx
-import { Award, ExternalLink } from "lucide-react";
+import { Award, ExternalLink, Trophy } from "lucide-react";
 import { Button } from "./ui/button";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { useRipple } from "@/hooks/useRipple";
 
 const Certifications = () => {
+  const { ref: headerRef, isVisible: headerVisible } = useScrollReveal();
+  const createRipple = useRipple();
   const certifications = [
     {
       title: "Machine Learning Specialization",
@@ -42,19 +46,37 @@ const Certifications = () => {
   ];
 
   return (
-    <section id="certifications" className="py-20 px-4">
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-display font-bold mb-12 text-center">
-          <span className="gradient-text">Certifications</span>
+    <section id="certifications" className="py-20 px-4 relative">
+      {/* Section glow */}
+      <div className="absolute top-1/2 left-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl opacity-50" />
+      
+      <div className="max-w-6xl mx-auto relative z-10">
+        <h2 
+          ref={headerRef}
+          className={`text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-16 text-center transition-all duration-1000 ${
+            headerVisible ? 'reveal-scale opacity-100' : 'opacity-0'
+          }`}
+        >
+          <span className="gradient-text inline-flex items-center gap-3">
+            <Trophy className="w-10 h-10 animate-pulse" />
+            Certifications
+          </span>
         </h2>
         
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {certifications.map((cert, index) => (
-            <div
-              key={index}
-              className="glass-strong rounded-3xl p-6 hover:scale-105 transition-all group animate-fade-in"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
+          {certifications.map((cert, index) => {
+            const CertCard = () => {
+              const { ref, isVisible } = useScrollReveal();
+              
+              return (
+                <div
+                  ref={ref}
+                  className={`glass-strong rounded-3xl p-6 interactive-hover glow-on-hover group border border-primary/10 relative overflow-hidden transition-all duration-1000 ${
+                    isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-90'
+                  }`}
+                  style={{ transitionDelay: `${index * 100}ms` }}
+                  onClick={(e) => createRipple(e)}
+                >
               <div className="flex items-start gap-3 mb-4">
                 <div className="p-2 rounded-lg bg-primary/20 mt-1">
                   <Award className="w-5 h-5 text-primary" />
@@ -104,8 +126,12 @@ const Certifications = () => {
                   </Button>
                 )}
               </div>
-            </div>
-          ))}
+                </div>
+              );
+            };
+            
+            return <CertCard key={index} />;
+          })}
         </div>
       </div>
     </section>

@@ -1,15 +1,38 @@
-import { GraduationCap, MapPin } from "lucide-react";
+import { GraduationCap, MapPin, Sparkle } from "lucide-react";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { useRipple } from "@/hooks/useRipple";
 
 const About = () => {
+  const { ref: headerRef, isVisible: headerVisible } = useScrollReveal();
+  const { ref: educationRef, isVisible: educationVisible } = useScrollReveal();
+  const { ref: factsRef, isVisible: factsVisible } = useScrollReveal();
+  const createRipple = useRipple();
+
   return (
-    <section id="about" className="py-20 px-4">
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-display font-bold mb-12 text-center">
-          <span className="gradient-text">About Me</span>
+    <section id="about" className="py-20 px-4 relative">
+      {/* Section glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-primary/10 rounded-full blur-3xl opacity-50" />
+      
+      <div className="max-w-6xl mx-auto relative z-10">
+        <h2 
+          ref={headerRef}
+          className={`text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-16 text-center transition-all duration-1000 ${
+            headerVisible ? 'reveal-up opacity-100' : 'opacity-0'
+          }`}
+        >
+          <span className="gradient-text inline-flex items-center gap-3">
+            <Sparkle className="w-10 h-10 animate-pulse" />
+            About Me
+          </span>
         </h2>
         
         <div className="grid md:grid-cols-2 gap-8">
-          <div className="glass-strong rounded-3xl p-8 hover:scale-105 transition-transform animate-slide-in-left">
+          <div 
+            ref={educationRef}
+            className={`glass-strong rounded-3xl p-8 interactive-hover glow-on-hover border border-primary/10 transition-all duration-1000 ${
+              educationVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-20'
+            }`}
+          >
             <div className="flex items-center gap-3 mb-4">
               <div className="p-3 rounded-xl bg-primary/20">
                 <GraduationCap className="w-6 h-6 text-primary" />
@@ -50,25 +73,50 @@ const About = () => {
             </div>
           </div>
           
-          <div className="glass-strong rounded-3xl p-8 hover:scale-105 transition-transform animate-slide-in-right">
-            <h3 className="text-2xl font-display font-semibold mb-6">Quick Facts</h3>
+          <div 
+            ref={factsRef}
+            className={`glass-strong rounded-3xl p-8 interactive-hover glow-on-hover border border-secondary/10 transition-all duration-1000 ${
+              factsVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-20'
+            }`}
+          >
+            <h3 className="text-2xl font-display font-semibold mb-6 gradient-text-secondary">Quick Facts</h3>
             
             <div className="space-y-6">
-              <div>
-                <p className="text-muted-foreground mb-2">Location</p>
-                <p className="text-lg font-medium flex items-center gap-2">
-                  <MapPin className="w-5 h-5 text-primary" />
+              <div className="group">
+                <p className="text-muted-foreground mb-2 text-sm">Location</p>
+                <p className="text-lg font-medium flex items-center gap-2 group-hover:translate-x-2 transition-transform">
+                  <MapPin className="w-5 h-5 text-primary group-hover:scale-110 transition-transform" />
                   Cairo, Egypt
                 </p>
               </div>
               
               <div>
-                <p className="text-muted-foreground mb-2">Focus Areas</p>
+                <p className="text-muted-foreground mb-3 text-sm">Focus Areas</p>
                 <div className="flex flex-wrap gap-2">
-                  <span className="glass px-4 py-2 rounded-full text-sm font-medium">IoT Development</span>
-                  <span className="glass px-4 py-2 rounded-full text-sm font-medium">Embedded Systems</span>
-                  <span className="glass px-4 py-2 rounded-full text-sm font-medium">AI Integration</span>
-                  <span className="glass px-4 py-2 rounded-full text-sm font-medium">Smart Home</span>
+                  <span 
+                    className="glass px-4 py-2 rounded-full text-sm font-medium hover:scale-110 hover:bg-primary/20 transition-all cursor-default glow-on-hover relative overflow-hidden"
+                    onClick={(e) => createRipple(e)}
+                  >
+                    IoT Development
+                  </span>
+                  <span 
+                    className="glass px-4 py-2 rounded-full text-sm font-medium hover:scale-110 hover:bg-secondary/20 transition-all cursor-default glow-on-hover relative overflow-hidden"
+                    onClick={(e) => createRipple(e)}
+                  >
+                    Embedded Systems
+                  </span>
+                  <span 
+                    className="glass px-4 py-2 rounded-full text-sm font-medium hover:scale-110 hover:bg-accent/20 transition-all cursor-default glow-on-hover relative overflow-hidden"
+                    onClick={(e) => createRipple(e)}
+                  >
+                    AI Integration
+                  </span>
+                  <span 
+                    className="glass px-4 py-2 rounded-full text-sm font-medium hover:scale-110 hover:bg-primary/20 transition-all cursor-default glow-on-hover relative overflow-hidden"
+                    onClick={(e) => createRipple(e)}
+                  >
+                    Smart Home
+                  </span>
                 </div>
               </div>
               

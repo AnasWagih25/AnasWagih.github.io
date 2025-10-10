@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "./ui/button";
+import { useRipple } from "@/hooks/useRipple";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const createRipple = useRipple();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -50,8 +52,11 @@ const Navigation = () => {
             {navItems.map((item) => (
               <button
                 key={item.id}
-                onClick={() => scrollToSection(item.id)}
-                className="px-5 py-2.5 rounded-full bg-white/5 hover:bg-gradient-to-r hover:from-primary/20 hover:to-secondary/20 border border-white/10 hover:border-white/30 transition-all duration-300 font-semibold text-sm tracking-wide hover:scale-105 hover:shadow-lg hover:shadow-primary/20"
+                onClick={(e) => {
+                  createRipple(e);
+                  scrollToSection(item.id);
+                }}
+                className="px-5 py-2.5 rounded-full bg-white/5 hover:bg-gradient-to-r hover:from-primary/20 hover:to-secondary/20 border border-white/10 hover:border-white/30 transition-all duration-300 font-semibold text-sm tracking-wide hover:scale-110 hover:shadow-lg hover:shadow-primary/20 glow-on-hover relative overflow-hidden"
               >
                 {item.label}
               </button>
@@ -77,8 +82,11 @@ const Navigation = () => {
             {navItems.map((item) => (
               <button
                 key={item.id}
-                onClick={() => scrollToSection(item.id)}
-                className="block w-full text-left px-5 py-3.5 rounded-2xl bg-white/5 hover:bg-gradient-to-r hover:from-primary/20 hover:to-secondary/20 border border-white/10 hover:border-white/30 transition-all duration-300 font-semibold hover:scale-102 hover:shadow-lg"
+                onClick={(e) => {
+                  createRipple(e);
+                  scrollToSection(item.id);
+                }}
+                className="block w-full text-left px-5 py-3.5 rounded-2xl bg-white/5 hover:bg-gradient-to-r hover:from-primary/20 hover:to-secondary/20 border border-white/10 hover:border-white/30 transition-all duration-300 font-semibold hover:scale-105 hover:shadow-lg glow-on-hover relative overflow-hidden"
               >
                 {item.label}
               </button>

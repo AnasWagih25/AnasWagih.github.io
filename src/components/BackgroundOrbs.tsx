@@ -1,71 +1,123 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 
 const BackgroundOrbs = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [scrollY, setScrollY] = useState(0);
+  const [clicks, setClicks] = useState<Array<{ x: number; y: number; id: number }>>([]);
+
+  const handleMouseMove = useCallback((e: MouseEvent) => {
+    setMousePosition({ x: e.clientX, y: e.clientY });
+  }, []);
+
+  const handleScroll = useCallback(() => {
+    setScrollY(window.scrollY);
+  }, []);
+
+  const handleClick = useCallback((e: MouseEvent) => {
+    const newClick = { x: e.clientX, y: e.clientY, id: Date.now() };
+    setClicks(prev => [...prev, newClick]);
+    setTimeout(() => {
+      setClicks(prev => prev.filter(click => click.id !== newClick.id));
+    }, 1000);
+  }, []);
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-
     window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
+    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("click", handleClick);
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("click", handleClick);
+    };
+  }, [handleMouseMove, handleScroll, handleClick]);
 
   return (
     <>
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
-        {/* Orb 1 - Purple */}
+        {/* Main glowing orbs with enhanced animations */}
         <div
-          className="absolute w-96 h-96 rounded-full opacity-20 blur-3xl"
+          className="absolute w-[600px] h-[600px] rounded-full blur-3xl"
           style={{
-            background: "radial-gradient(circle, hsl(263, 70%, 60%) 0%, transparent 70%)",
-            top: "10%",
-            left: "10%",
-            animation: "orb-float 20s ease-in-out infinite",
+            background: "radial-gradient(circle, hsl(270, 100%, 65%) 0%, hsl(270, 100%, 45%) 30%, transparent 70%)",
+            top: "5%",
+            left: "5%",
+            opacity: 0.25,
+            animation: "orb-float 18s ease-in-out infinite",
+            transform: `translateY(${scrollY * 0.1}px)`,
           }}
         />
         
-        {/* Orb 2 - Blue */}
         <div
-          className="absolute w-[32rem] h-[32rem] rounded-full opacity-20 blur-3xl"
+          className="absolute w-[700px] h-[700px] rounded-full blur-3xl"
           style={{
-            background: "radial-gradient(circle, hsl(217, 91%, 60%) 0%, transparent 70%)",
-            top: "60%",
-            right: "10%",
-            animation: "orb-float-2 25s ease-in-out infinite",
+            background: "radial-gradient(circle, hsl(250, 100%, 70%) 0%, hsl(230, 100%, 60%) 30%, transparent 70%)",
+            top: "50%",
+            right: "5%",
+            opacity: 0.3,
+            animation: "orb-float-2 22s ease-in-out infinite",
+            transform: `translateY(${scrollY * -0.15}px)`,
           }}
         />
         
-        {/* Orb 3 - Pink */}
         <div
-          className="absolute w-80 h-80 rounded-full opacity-15 blur-3xl"
+          className="absolute w-[500px] h-[500px] rounded-full blur-3xl"
           style={{
-            background: "radial-gradient(circle, hsl(326, 78%, 65%) 0%, transparent 70%)",
-            bottom: "15%",
+            background: "radial-gradient(circle, hsl(280, 100%, 75%) 0%, hsl(270, 100%, 55%) 30%, transparent 70%)",
+            bottom: "10%",
             left: "50%",
-            animation: "orb-float-3 30s ease-in-out infinite",
+            opacity: 0.2,
+            animation: "orb-float-3 25s ease-in-out infinite",
+            transform: `translateY(${scrollY * 0.08}px)`,
           }}
         />
         
-        {/* Orb 4 - Cyan */}
         <div
-          className="absolute w-72 h-72 rounded-full opacity-15 blur-3xl"
+          className="absolute w-[450px] h-[450px] rounded-full blur-3xl"
           style={{
-            background: "radial-gradient(circle, hsl(186, 100%, 69%) 0%, transparent 70%)",
-            top: "40%",
-            left: "30%",
-            animation: "orb-float 22s ease-in-out infinite reverse",
+            background: "radial-gradient(circle, hsl(260, 100%, 68%) 0%, transparent 70%)",
+            top: "30%",
+            left: "25%",
+            opacity: 0.18,
+            animation: "orb-float 20s ease-in-out infinite reverse, orb-pulse 8s ease-in-out infinite",
           }}
         />
 
-        {/* Mouse follower orb */}
+        {/* Interactive mouse follower with glow */}
         <div
-          className="absolute w-64 h-64 rounded-full opacity-10 blur-3xl transition-all duration-1000 ease-out"
+          className="absolute w-96 h-96 rounded-full blur-3xl transition-all duration-700 ease-out"
           style={{
-            background: "radial-gradient(circle, hsl(263, 70%, 60%) 0%, transparent 70%)",
-            left: `${mousePosition.x - 128}px`,
-            top: `${mousePosition.y - 128}px`,
+            background: "radial-gradient(circle, hsl(270, 100%, 65%) 0%, hsl(280, 100%, 70%) 50%, transparent 70%)",
+            left: `${mousePosition.x - 192}px`,
+            top: `${mousePosition.y - 192}px`,
+            opacity: 0.15,
+          }}
+        />
+
+        {/* Click explosion effects */}
+        {clicks.map((click) => (
+          <div
+            key={click.id}
+            className="absolute w-32 h-32 rounded-full"
+            style={{
+              left: `${click.x - 64}px`,
+              top: `${click.y - 64}px`,
+              background: "radial-gradient(circle, hsl(270, 100%, 65%) 0%, transparent 70%)",
+              opacity: 0,
+              animation: "ripple-effect 1s ease-out forwards",
+            }}
+          />
+        ))}
+
+        {/* Grid overlay for depth */}
+        <div
+          className="absolute inset-0 opacity-[0.02]"
+          style={{
+            backgroundImage: `
+              linear-gradient(hsl(270, 100%, 65%) 1px, transparent 1px),
+              linear-gradient(90deg, hsl(270, 100%, 65%) 1px, transparent 1px)
+            `,
+            backgroundSize: '50px 50px',
           }}
         />
       </div>

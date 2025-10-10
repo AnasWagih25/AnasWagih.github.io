@@ -1,6 +1,10 @@
-import { Briefcase, Calendar } from "lucide-react";
+import { Briefcase, Calendar, Zap } from "lucide-react";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { useRipple } from "@/hooks/useRipple";
 
 const Experience = () => {
+  const { ref: headerRef, isVisible: headerVisible } = useScrollReveal();
+  const createRipple = useRipple();
   const experiences = [
     {
       role: "R&D Engineer",
@@ -27,19 +31,37 @@ const Experience = () => {
   ];
 
   return (
-    <section id="experience" className="py-20 px-4">
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-display font-bold mb-12 text-center">
-          <span className="gradient-text">Experience</span>
+    <section id="experience" className="py-20 px-4 relative">
+      {/* Section glow */}
+      <div className="absolute top-1/2 right-0 w-96 h-96 bg-secondary/10 rounded-full blur-3xl opacity-50" />
+      
+      <div className="max-w-6xl mx-auto relative z-10">
+        <h2 
+          ref={headerRef}
+          className={`text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-16 text-center transition-all duration-1000 ${
+            headerVisible ? 'reveal-scale opacity-100' : 'opacity-0'
+          }`}
+        >
+          <span className="gradient-text inline-flex items-center gap-3">
+            <Zap className="w-10 h-10 animate-pulse" />
+            Experience
+          </span>
         </h2>
         
         <div className="space-y-8">
-          {experiences.map((exp, index) => (
-            <div
-              key={index}
-              className="glass-strong rounded-3xl p-8 hover:scale-[1.02] transition-all animate-fade-in"
-              style={{ animationDelay: `${index * 0.2}s` }}
-            >
+          {experiences.map((exp, index) => {
+            const ExperienceCard = () => {
+              const { ref, isVisible } = useScrollReveal();
+              
+              return (
+                <div
+                  ref={ref}
+                  className={`glass-strong rounded-3xl p-8 interactive-hover glow-on-hover border border-${exp.color}/10 relative overflow-hidden transition-all duration-1000 ${
+                    isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                  }`}
+                  style={{ transitionDelay: `${index * 150}ms` }}
+                  onClick={(e) => createRipple(e)}
+                >
               <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-6">
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
@@ -64,8 +86,12 @@ const Experience = () => {
                   </li>
                 ))}
               </ul>
-            </div>
-          ))}
+                </div>
+              );
+            };
+            
+            return <ExperienceCard key={index} />;
+          })}
         </div>
       </div>
     </section>
