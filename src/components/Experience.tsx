@@ -38,14 +38,11 @@ const Experience = () => {
       <div className="max-w-6xl mx-auto relative z-10">
         <h2 
           ref={headerRef}
-          className={`text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-16 text-center transition-all duration-1000 ${
+          className={`text-4xl md:text-5xl font-display font-bold mb-12 text-center transition-all duration-1000 ${
             headerVisible ? 'reveal-scale opacity-100' : 'opacity-0'
           }`}
         >
-          <span className="gradient-text inline-flex items-center gap-3">
-            <Zap className="w-10 h-10 animate-pulse" />
-            Experience
-          </span>
+          <span className="gradient-text">Experience</span>
         </h2>
         
         <div className="space-y-8">
@@ -56,7 +53,7 @@ const Experience = () => {
               return (
                 <div
                   ref={ref}
-                  className={`glass-strong rounded-3xl p-8 interactive-hover glow-on-hover border border-${exp.color}/10 relative overflow-hidden transition-all duration-1000 ${
+                  className={`gradient-border rounded-3xl p-8 interactive-hover group transition-all duration-1000 ${
                     isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
                   }`}
                   style={{ transitionDelay: `${index * 150}ms` }}

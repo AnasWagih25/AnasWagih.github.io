@@ -16,20 +16,17 @@ const About = () => {
       <div className="max-w-6xl mx-auto relative z-10">
         <h2 
           ref={headerRef}
-          className={`text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-16 text-center transition-all duration-1000 ${
+          className={`text-4xl md:text-5xl font-display font-bold mb-12 text-center transition-all duration-1000 ${
             headerVisible ? 'reveal-up opacity-100' : 'opacity-0'
           }`}
         >
-          <span className="gradient-text inline-flex items-center gap-3">
-            <Sparkle className="w-10 h-10 animate-pulse" />
-            About Me
-          </span>
+          <span className="gradient-text">About Me</span>
         </h2>
         
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-6">
           <div 
             ref={educationRef}
-            className={`glass-strong rounded-3xl p-8 interactive-hover glow-on-hover border border-primary/10 transition-all duration-1000 ${
+            className={`gradient-border rounded-3xl p-8 interactive-hover group transition-all duration-1000 ${
               educationVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-20'
             }`}
           >
@@ -75,7 +72,7 @@ const About = () => {
           
           <div 
             ref={factsRef}
-            className={`glass-strong rounded-3xl p-8 interactive-hover glow-on-hover border border-secondary/10 transition-all duration-1000 ${
+            className={`gradient-border rounded-3xl p-8 interactive-hover group transition-all duration-1000 ${
               factsVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-20'
             }`}
           >

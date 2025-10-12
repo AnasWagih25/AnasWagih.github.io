@@ -53,14 +53,11 @@ const Certifications = () => {
       <div className="max-w-6xl mx-auto relative z-10">
         <h2 
           ref={headerRef}
-          className={`text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-16 text-center transition-all duration-1000 ${
+          className={`text-4xl md:text-5xl font-display font-bold mb-12 text-center transition-all duration-1000 ${
             headerVisible ? 'reveal-scale opacity-100' : 'opacity-0'
           }`}
         >
-          <span className="gradient-text inline-flex items-center gap-3">
-            <Trophy className="w-10 h-10 animate-pulse" />
-            Certifications
-          </span>
+          <span className="gradient-text">Certifications</span>
         </h2>
         
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -71,7 +68,7 @@ const Certifications = () => {
               return (
                 <div
                   ref={ref}
-                  className={`glass-strong rounded-3xl p-6 interactive-hover glow-on-hover group border border-primary/10 relative overflow-hidden transition-all duration-1000 ${
+                  className={`gradient-border rounded-3xl p-6 interactive-hover group transition-all duration-1000 ${
                     isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-90'
                   }`}
                   style={{ transitionDelay: `${index * 100}ms` }}

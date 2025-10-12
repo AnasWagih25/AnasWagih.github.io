@@ -54,15 +54,6 @@ const Hero = () => {
             Electronics & Embedded Systems Engineer
           </h2>
           
-          <p 
-            className={`text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-8 leading-relaxed transition-all duration-1000 ${
-              subtitleVisible ? 'opacity-100' : 'opacity-0'
-            }`}
-          >
-            B.Sc. Student in Electronics and Communication Engineering, specializing in{" "}
-            <span className="gradient-text-secondary font-semibold">IoT, AI, and Embedded Systems</span>.
-            Passionate about building intelligent, connected devices that bridge the digital and physical worlds.
-          </p>
           
           <div 
             ref={buttonRef}

@@ -47,7 +47,7 @@ const Skills = () => {
               return (
                 <div
                   ref={ref}
-                  className={`glass-strong rounded-3xl p-8 interactive-hover transition-all duration-700 ${
+                  className={`gradient-border rounded-3xl p-8 interactive-hover group transition-all duration-700 ${
                     isVisible ? 'reveal-scale opacity-100' : 'opacity-0'
                   }`}
                   style={{ transitionDelay: `${index * 100}ms` }}
