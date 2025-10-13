@@ -35,16 +35,16 @@ const Navigation = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 lg:px-8 pt-6">
       <div
-        className={`max-w-6xl mx-auto rounded-3xl transition-all duration-500 ${
-          isScrolled ? "glass-strong shadow-2xl shadow-primary/10" : "glass border border-white/20"
+        className={`max-w-6xl mx-auto transition-all duration-500 ${
+          isScrolled ? "glass-strong border-4 border-primary" : "glass border-4 border-secondary"
         }`}
       >
         <div className="flex items-center justify-between h-20 px-6 sm:px-8 lg:px-10">
           <button
             onClick={() => scrollToSection("hero")}
-            className="text-2xl font-display font-black gradient-text hover:scale-110 transition-all duration-300 tracking-tight"
+            className="text-xl font-pixel gradient-text hover:scale-110 transition-all tracking-tight"
           >
-            AMW
+            &lt;AMW/&gt;
           </button>
 
           {/* Desktop Navigation */}
@@ -56,7 +56,7 @@ const Navigation = () => {
                   createRipple(e);
                   scrollToSection(item.id);
                 }}
-                className="px-5 py-2.5 rounded-full bg-white/5 hover:bg-gradient-to-r hover:from-primary/20 hover:to-secondary/20 border border-white/10 hover:border-white/30 transition-all duration-300 font-semibold text-sm tracking-wide hover:scale-110 hover:shadow-lg hover:shadow-primary/20 glow-on-hover relative overflow-hidden"
+                className="px-5 py-2.5 glass border-2 border-secondary hover:border-primary transition-all font-sans text-base hover:scale-110 glow-on-hover relative overflow-hidden"
               >
                 {item.label}
               </button>
@@ -67,7 +67,7 @@ const Navigation = () => {
           <Button
             variant="ghost"
             size="icon"
-            className="md:hidden rounded-full bg-white/5 hover:bg-white/10 border border-white/10"
+            className="md:hidden glass border-2 border-primary hover:border-accent"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -77,7 +77,7 @@ const Navigation = () => {
 
       {/* Mobile Navigation */}
       {isMobileMenuOpen && (
-        <div className="md:hidden mt-2 max-w-6xl mx-auto glass-strong rounded-3xl border border-white/10 backdrop-blur-xl shadow-2xl">
+        <div className="md:hidden mt-2 max-w-6xl mx-auto glass-strong border-4 border-primary">
           <div className="px-6 py-6 space-y-2">
             {navItems.map((item) => (
               <button
@@ -86,7 +86,7 @@ const Navigation = () => {
                   createRipple(e);
                   scrollToSection(item.id);
                 }}
-                className="block w-full text-left px-5 py-3.5 rounded-2xl bg-white/5 hover:bg-gradient-to-r hover:from-primary/20 hover:to-secondary/20 border border-white/10 hover:border-white/30 transition-all duration-300 font-semibold hover:scale-105 hover:shadow-lg glow-on-hover relative overflow-hidden"
+                className="block w-full text-left px-5 py-3.5 glass border-2 border-secondary hover:border-accent transition-all font-sans text-base hover:scale-105 glow-on-hover relative overflow-hidden"
               >
                 {item.label}
               </button>

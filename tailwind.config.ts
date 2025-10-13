@@ -14,9 +14,9 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['NOHEMI', 'sans-serif'],
-        display: ['Galgo', 'NOHEMI', 'sans-serif'],
-        accent: ['NOHEMI', 'sans-serif'],
+        sans: ['VT323', 'monospace'],
+        display: ['Press Start 2P', 'cursive'],
+        pixel: ['Press Start 2P', 'cursive'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -54,9 +54,10 @@ export default {
         },
       },
       borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+        lg: "0",
+        md: "0",
+        sm: "0",
+        none: "0",
       },
       keyframes: {
         "accordion-down": {
@@ -88,12 +89,18 @@ export default {
           "100%": { transform: "scale(1)", opacity: "1" }
         },
         "glow": {
-          "0%, 100%": { boxShadow: "0 0 20px rgba(147, 51, 234, 0.3)" },
-          "50%": { boxShadow: "0 0 40px rgba(147, 51, 234, 0.6)" }
+          "0%, 100%": { boxShadow: "0 0 0 4px hsl(330, 100%, 65%), 4px 4px 0 hsl(220, 15%, 5%)" },
+          "50%": { boxShadow: "0 0 0 4px hsl(50, 100%, 60%), 4px 4px 0 hsl(220, 15%, 5%)" }
         },
         "float": {
           "0%, 100%": { transform: "translateY(0px)" },
-          "50%": { transform: "translateY(-20px)" }
+          "25%": { transform: "translateY(-8px)" },
+          "50%": { transform: "translateY(-16px)" },
+          "75%": { transform: "translateY(-8px)" }
+        },
+        "pixel-bounce": {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-12px)" }
         },
       },
       animation: {
@@ -103,9 +110,10 @@ export default {
         "fade-in-up": "fade-in-up 0.8s ease-out",
         "slide-in-left": "slide-in-left 0.6s ease-out",
         "slide-in-right": "slide-in-right 0.6s ease-out",
-        "scale-in": "scale-in 0.5s ease-out",
-        "glow": "glow 2s ease-in-out infinite",
-        "float": "float 3s ease-in-out infinite",
+        "scale-in": "scale-in 0.3s steps(3)",
+        "glow": "glow 0.8s steps(4) infinite",
+        "float": "float 1.2s steps(6) infinite",
+        "pixel-bounce": "pixel-bounce 0.6s steps(4) infinite",
       },
     },
   },

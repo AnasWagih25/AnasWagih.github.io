@@ -46,12 +46,12 @@ const ProjectCard = ({ project, index }: { project: any; index: number }) => {
       }`}
       style={{ transitionDelay: `${index * 150}ms` }}
     >
-      <InteractiveCard className="gradient-border rounded-3xl p-8 interactive-hover group">
-        <h3 className="text-2xl font-display font-semibold mb-4 group-hover:gradient-text transition-all">
+      <InteractiveCard className="gradient-border p-8 interactive-hover group">
+        <h3 className="text-lg font-pixel mb-4 group-hover:gradient-text transition-all leading-relaxed">
           {project.title}
         </h3>
         
-        <p className="text-muted-foreground leading-relaxed mb-6">
+        <p className="text-muted-foreground leading-relaxed mb-6 font-sans text-base">
           {project.description}
         </p>
         
@@ -59,7 +59,7 @@ const ProjectCard = ({ project, index }: { project: any; index: number }) => {
           {project.tags.map((tag: string, i: number) => (
             <span
               key={i}
-              className="glass px-3 py-1 rounded-full text-xs font-medium hover:scale-110 hover:bg-primary/20 transition-all cursor-default"
+              className="glass px-3 py-1 border-2 border-primary text-xs font-sans hover:scale-110 hover:border-accent transition-all cursor-default"
               onClick={(e) => createRipple(e)}
             >
               {tag}
@@ -71,24 +71,24 @@ const ProjectCard = ({ project, index }: { project: any; index: number }) => {
           <Button
             size="sm"
             variant="outline"
-            className="glass border hover:scale-110 transition-all relative overflow-hidden"
+            className="glass border-2 border-secondary hover:scale-110 transition-all font-sans"
             onClick={(e) => createRipple(e)}
             asChild
           >
             <a href={project.link} target="_blank" rel="noopener noreferrer">
               <Github className="w-4 h-4 mr-2" />
-              View Code
+              CODE
             </a>
           </Button>
           <Button
             size="sm"
-            className="glass-strong hover:scale-110 transition-all relative overflow-hidden"
+            className="glass-strong border-2 border-primary hover:scale-110 transition-all font-sans"
             onClick={(e) => createRipple(e)}
             asChild
           >
             <a href={project.link} target="_blank" rel="noopener noreferrer">
               <ExternalLink className="w-4 h-4 mr-2" />
-              Learn More
+              INFO
             </a>
           </Button>
         </div>
@@ -100,8 +100,8 @@ const ProjectCard = ({ project, index }: { project: any; index: number }) => {
   return (
     <section id="projects" className="py-20 px-4">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-display font-bold mb-12 text-center animate-fade-in-up">
-          <span className="gradient-text">Featured Projects</span>
+        <h2 className="text-2xl md:text-3xl font-pixel mb-12 text-center animate-fade-in-up">
+          <span className="gradient-text">&gt;&gt; PROJECTS</span>
         </h2>
         
         <div className="grid md:grid-cols-2 gap-6">

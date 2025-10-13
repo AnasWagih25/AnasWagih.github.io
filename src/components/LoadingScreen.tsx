@@ -4,31 +4,30 @@ import { Sparkles, Zap, Cpu, Code, Rocket, Star, Heart, Trophy } from "lucide-re
 const LoadingScreen = ({ onLoadComplete }: { onLoadComplete: () => void }) => {
   const [progress, setProgress] = useState(0);
   const [currentIcon, setCurrentIcon] = useState(0);
-  const [glowPosition, setGlowPosition] = useState({ x: 50, y: 50 });
-  const [floatingEmojis, setFloatingEmojis] = useState<Array<{ id: number; x: number; y: number; emoji: string }>>([]);
-  const [score, setScore] = useState(0);
-  const [combo, setCombo] = useState(1);
+  const [lives, setLives] = useState(3);
+  const [coins, setCoins] = useState(0);
+  const [level, setLevel] = useState(1);
 
   const icons = [
-    { Icon: Sparkles, color: "hsl(270, 100%, 65%)", name: "✨" },
-    { Icon: Zap, color: "hsl(280, 100%, 70%)", name: "⚡" },
-    { Icon: Cpu, color: "hsl(260, 100%, 60%)", name: "🎮" },
-    { Icon: Code, color: "hsl(290, 100%, 75%)", name: "💻" },
-    { Icon: Rocket, color: "hsl(250, 100%, 70%)", name: "🚀" },
-    { Icon: Star, color: "hsl(280, 100%, 65%)", name: "⭐" },
-    { Icon: Heart, color: "hsl(340, 100%, 65%)", name: "💜" },
-    { Icon: Trophy, color: "hsl(50, 100%, 60%)", name: "🏆" }
+    { Icon: Sparkles, color: "hsl(330, 100%, 65%)", emoji: "✨" },
+    { Icon: Zap, color: "hsl(50, 100%, 60%)", emoji: "⚡" },
+    { Icon: Cpu, color: "hsl(190, 100%, 50%)", emoji: "🎮" },
+    { Icon: Code, color: "hsl(280, 100%, 60%)", emoji: "💻" },
+    { Icon: Rocket, color: "hsl(30, 100%, 55%)", emoji: "🚀" },
+    { Icon: Star, color: "hsl(50, 100%, 60%)", emoji: "⭐" },
+    { Icon: Heart, color: "hsl(330, 100%, 65%)", emoji: "💜" },
+    { Icon: Trophy, color: "hsl(50, 100%, 60%)", emoji: "🏆" }
   ];
 
-  const funMessages = [
-    "🎮 Loading the fun...",
-    "⚡ Charging creativity...",
-    "🚀 Launching awesomeness...",
-    "✨ Sprinkling magic...",
-    "🎨 Painting pixels...",
-    "🎪 Setting up the show...",
-    "🎯 Aiming for perfection...",
-    "🎭 Ready, set, go!"
+  const messages = [
+    ">> BOOTING SYSTEM...",
+    ">> LOADING PIXELS...",
+    ">> CHARGING POWER-UPS...",
+    ">> SPAWNING ENEMIES...",
+    ">> UNLOCKING LEVELS...",
+    ">> READY PLAYER ONE...",
+    ">> GAME START!",
+    ">> LET'S GO!"
   ];
 
   useEffect(() => {
@@ -42,30 +41,13 @@ const LoadingScreen = ({ onLoadComplete }: { onLoadComplete: () => void }) => {
       const newProgress = (currentStep / steps) * 100;
       setProgress(newProgress);
       
-      if (currentStep % 8 === 0) {
-        setCurrentIcon(prev => (prev + 1) % icons.length);
-        setCombo(prev => prev + 1);
-        setScore(prev => prev + Math.floor(Math.random() * 500) + 100);
-      }
-
-      if (currentStep % 3 === 0) {
-        setGlowPosition({
-          x: 20 + Math.random() * 60,
-          y: 20 + Math.random() * 60
-        });
-      }
-
       if (currentStep % 10 === 0) {
-        const emoji = icons[Math.floor(Math.random() * icons.length)].name;
-        setFloatingEmojis(prev => [
-          ...prev,
-          {
-            id: Date.now() + Math.random(),
-            x: Math.random() * 100,
-            y: 100,
-            emoji
-          }
-        ]);
+        setCurrentIcon(prev => (prev + 1) % icons.length);
+        setCoins(prev => prev + Math.floor(Math.random() * 10) + 5);
+      }
+
+      if (currentStep % 25 === 0) {
+        setLevel(prev => prev + 1);
       }
 
       if (currentStep >= steps) {
@@ -74,167 +56,160 @@ const LoadingScreen = ({ onLoadComplete }: { onLoadComplete: () => void }) => {
       }
     }, stepDuration);
 
-    const cleanupInterval = setInterval(() => {
-      setFloatingEmojis(prev => prev.filter(e => Date.now() - e.id < 3000));
-    }, 500);
-
-    return () => {
-      clearInterval(interval);
-      clearInterval(cleanupInterval);
-    };
+    return () => clearInterval(interval);
   }, [onLoadComplete]);
 
-  const { Icon, color, name } = icons[currentIcon];
-  const currentMessage = funMessages[Math.floor((progress / 100) * funMessages.length)];
+  const { Icon, color } = icons[currentIcon];
+  const currentMessage = messages[Math.floor((progress / 100) * messages.length)];
 
   return (
     <div className="fixed inset-0 z-50 bg-background overflow-hidden select-none">
-      {/* Background effects */}
-      <div 
-        className="absolute w-[500px] h-[500px] rounded-full opacity-50 blur-3xl transition-all duration-500 animate-pulse"
-        style={{
-          background: `radial-gradient(circle, ${color} 0%, transparent 70%)`,
-          left: `${glowPosition.x}%`,
-          top: `${glowPosition.y}%`,
-          transform: 'translate(-50%, -50%) scale(1.2)'
-        }}
-      />
-      <div className="absolute top-0 right-0 w-80 h-80 bg-primary/30 rounded-full blur-3xl animate-ping" style={{ animationDuration: '2s' }} />
-      <div className="absolute bottom-0 left-0 w-80 h-80 bg-secondary/30 rounded-full blur-3xl animate-ping" style={{ animationDuration: '2.5s', animationDelay: '0.5s' }} />
+      {/* Pixel grid background effect */}
+      <div className="absolute inset-0 opacity-10" style={{
+        backgroundImage: `
+          linear-gradient(hsl(330, 100%, 65%) 1px, transparent 1px),
+          linear-gradient(90deg, hsl(330, 100%, 65%) 1px, transparent 1px)
+        `,
+        backgroundSize: '20px 20px'
+      }} />
 
-      {/* Floating emojis */}
-      {floatingEmojis.map(emoji => (
-        <div
-          key={emoji.id}
-          className="absolute text-4xl pointer-events-none z-10"
-          style={{
-            left: `${emoji.x}%`,
-            top: `${emoji.y}%`,
-            animation: `float-up 3s ease-out forwards`,
-            opacity: 0
-          }}
-        >
-          {emoji.emoji}
-        </div>
-      ))}
-
-      {/* Main grid container */}
-      <div className="relative h-full w-full flex items-center justify-center p-8">
-        <div className="max-w-6xl w-full grid grid-rows-[auto_1fr_auto] gap-12 h-full py-12">
+      {/* Main container */}
+      <div className="relative h-full w-full flex items-center justify-center p-4">
+        <div className="max-w-4xl w-full space-y-6">
           
-          {/* Top row - Stats */}
-          <div className="grid grid-cols-2 gap-6">
+          {/* Game HUD - Top */}
+          <div className="grid grid-cols-3 gap-4 mb-8">
             {/* Score */}
-            <div className="glass-strong px-8 py-6 rounded-3xl">
-              <div className="text-sm text-muted-foreground mb-2 uppercase tracking-wider">Score</div>
-              <div className="text-4xl font-black gradient-text tabular-nums">{score.toLocaleString()}</div>
-              {combo > 3 && (
-                <div className="text-sm text-primary font-bold mt-2 animate-pulse">x{combo} COMBO! 🔥</div>
-              )}
+            <div className="glass-strong p-4 border-4 border-primary">
+              <div className="text-xs font-pixel text-muted-foreground mb-1">SCORE</div>
+              <div className="text-2xl font-pixel text-primary tabular-nums">{coins * 100}</div>
             </div>
 
-            {/* Level indicator */}
-            <div className="glass-strong px-8 py-6 rounded-3xl">
-              <div className="text-sm text-muted-foreground mb-2 uppercase tracking-wider">Progress</div>
-              <div className="text-4xl font-black gradient-text tabular-nums">{Math.round(progress)}%</div>
-              <div className="text-sm text-secondary font-bold mt-2">Level {Math.floor(progress / 20) + 1}</div>
+            {/* Level */}
+            <div className="glass-strong p-4 border-4 border-accent">
+              <div className="text-xs font-pixel text-muted-foreground mb-1">LEVEL</div>
+              <div className="text-2xl font-pixel text-accent tabular-nums">{level}</div>
+            </div>
+
+            {/* Lives */}
+            <div className="glass-strong p-4 border-4 border-destructive">
+              <div className="text-xs font-pixel text-muted-foreground mb-1">LIVES</div>
+              <div className="text-2xl font-pixel flex gap-2">
+                {[...Array(lives)].map((_, i) => (
+                  <Heart key={i} className="w-6 h-6 fill-destructive text-destructive animate-pixel-bounce" style={{ animationDelay: `${i * 0.1}s` }} />
+                ))}
+              </div>
             </div>
           </div>
 
-          {/* Middle row - Main content */}
-          <div className="flex items-center justify-center">
-            <div className="grid grid-cols-1 gap-8 max-w-2xl w-full">
-              
-              {/* Icon display */}
-              <div className="flex justify-center">
-                <div className="relative">
-                  <div 
-                    className="absolute inset-0 rounded-full opacity-40 blur-3xl animate-pulse"
-                    style={{ 
-                      background: color,
-                      animationDuration: '1s'
-                    }}
+          {/* Main Loading Area */}
+          <div className="glass-strong p-8 border-4 border-secondary space-y-6">
+            
+            {/* Icon Display with pixel border */}
+            <div className="flex justify-center mb-6">
+              <div className="relative">
+                <div 
+                  className="glass-strong p-8 border-4 animate-glow"
+                  style={{ borderColor: color }}
+                >
+                  <Icon 
+                    className="w-20 h-20 animate-pixel-bounce"
+                    style={{ color }}
                   />
-                  
-                  {/* Rotating rings */}
-                  <div className="absolute inset-0 animate-spin" style={{ animationDuration: '3s' }}>
-                    <div className="w-40 h-40 border-4 border-primary/30 border-t-primary rounded-full" />
-                  </div>
-                  <div className="absolute inset-0 animate-spin" style={{ animationDuration: '2s', animationDirection: 'reverse' }}>
-                    <div className="w-40 h-40 border-4 border-secondary/30 border-b-secondary rounded-full" />
-                  </div>
-                  
-                  <div 
-                    className="relative glass-strong p-12 rounded-full transition-all duration-300"
-                    style={{
-                      transform: `scale(${1 + (progress / 200)}) rotate(${progress * 3.6}deg)`,
-                      boxShadow: `0 0 80px ${color}`
-                    }}
-                  >
-                    <Icon 
-                      className="w-24 h-24 transition-all duration-300"
-                      style={{ color }}
-                    />
-                  </div>
                 </div>
+                {/* Corner decorations */}
+                <div className="absolute -top-2 -left-2 w-4 h-4 bg-primary" />
+                <div className="absolute -top-2 -right-2 w-4 h-4 bg-secondary" />
+                <div className="absolute -bottom-2 -left-2 w-4 h-4 bg-secondary" />
+                <div className="absolute -bottom-2 -right-2 w-4 h-4 bg-accent" />
               </div>
-
-              {/* Title */}
-              <div className="text-center">
-                <div className="relative inline-block">
-                  <h2 className="text-5xl font-display font-black gradient-text animate-bounce" style={{ animationDuration: '1s' }}>
-                    {name} LOADING {name}
-                  </h2>
-                  <div className="absolute -inset-2 blur-xl opacity-50" style={{ background: color }} />
-                </div>
-              </div>
-
-              {/* Progress bar */}
-              <div className="w-full">
-                <div className="relative w-full h-8 bg-background/50 rounded-full overflow-hidden glass border-2 border-primary/30">
-                  <div 
-                    className="h-full rounded-full transition-all duration-200 relative overflow-hidden"
-                    style={{ 
-                      width: `${progress}%`,
-                      background: `linear-gradient(90deg, ${color}, hsl(var(--secondary)), ${color})`,
-                      backgroundSize: '200% 100%',
-                      animation: 'shimmer 1.5s infinite'
-                    }}
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-pulse" />
-                  </div>
-                  <div className="absolute inset-0 flex items-center justify-center text-sm font-black text-white drop-shadow-lg">
-                    {Math.round(progress)}%
-                  </div>
-                </div>
-              </div>
-
-              {/* Fun message */}
-              <div className="text-center">
-                <p className="text-xl font-bold animate-pulse" style={{ color }}>
-                  {currentMessage}
-                </p>
-              </div>
-
             </div>
+
+            {/* Title */}
+            <div className="text-center">
+              <h2 className="text-3xl font-pixel gradient-text mb-2 tracking-wider">
+                LOADING
+              </h2>
+              <div className="flex justify-center gap-2">
+                {[...Array(8)].map((_, i) => (
+                  <div
+                    key={i}
+                    className={`w-3 h-3 transition-all ${
+                      i === currentIcon ? 'bg-primary scale-150' : 'bg-muted'
+                    }`}
+                    style={{ transitionDuration: '0.1s' }}
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* Progress Bar - Retro Style */}
+            <div className="space-y-2">
+              <div className="flex justify-between text-sm font-pixel">
+                <span className="text-secondary">PROGRESS</span>
+                <span className="text-accent">{Math.round(progress)}%</span>
+              </div>
+              <div className="h-8 bg-muted border-4 border-border relative overflow-hidden">
+                <div 
+                  className="h-full transition-all relative"
+                  style={{ 
+                    width: `${progress}%`,
+                    background: `repeating-linear-gradient(
+                      90deg,
+                      ${color},
+                      ${color} 10px,
+                      hsl(190, 100%, 50%) 10px,
+                      hsl(190, 100%, 50%) 20px
+                    )`,
+                    transitionDuration: '0.1s'
+                  }}
+                >
+                  {/* Scanline effect */}
+                  <div className="absolute inset-0 opacity-20" style={{
+                    background: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.1) 2px, rgba(255,255,255,0.1) 4px)'
+                  }} />
+                </div>
+                <div className="absolute inset-0 flex items-center justify-center font-pixel text-xs text-foreground drop-shadow-lg">
+                  {Math.round(progress)}%
+                </div>
+              </div>
+            </div>
+
+            {/* Message Display */}
+            <div className="text-center">
+              <p className="text-lg font-pixel animate-pulse" style={{ color }}>
+                {currentMessage}
+              </p>
+            </div>
+
+            {/* Coin Counter */}
+            <div className="flex justify-center items-center gap-3 glass p-3 border-2 border-accent">
+              <div className="w-6 h-6 bg-accent animate-float" style={{
+                clipPath: 'polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)'
+              }} />
+              <span className="text-xl font-pixel text-accent">x {coins}</span>
+            </div>
+
           </div>
 
-          {/* Bottom row - Icon grid */}
-          <div className="grid grid-cols-8 gap-4">
+          {/* Icon Grid - Power-ups */}
+          <div className="grid grid-cols-8 gap-2">
             {icons.map((iconData, i) => {
               const IconComp = iconData.Icon;
+              const isActive = i === currentIcon;
               return (
                 <div 
                   key={i}
-                  className={`glass-strong p-4 rounded-2xl flex items-center justify-center transition-all duration-300 ${
-                    i === currentIcon ? 'scale-110 ring-2 ring-primary' : 'opacity-50'
+                  className={`glass-strong p-3 border-2 transition-all ${
+                    isActive ? 'border-primary scale-110' : 'border-border opacity-50'
                   }`}
                   style={{
-                    boxShadow: i === currentIcon ? `0 0 30px ${iconData.color}` : 'none'
+                    transitionDuration: '0.1s',
+                    boxShadow: isActive ? `0 0 0 4px ${iconData.color}, 4px 4px 0 hsl(220, 15%, 5%)` : '4px 4px 0 hsl(220, 15%, 5%)'
                   }}
                 >
                   <IconComp 
-                    className="w-6 h-6"
+                    className="w-5 h-5"
                     style={{ color: iconData.color }}
                   />
                 </div>
@@ -242,48 +217,15 @@ const LoadingScreen = ({ onLoadComplete }: { onLoadComplete: () => void }) => {
             })}
           </div>
 
+          {/* Retro text */}
+          <div className="text-center">
+            <p className="text-xs font-pixel text-muted-foreground tracking-widest">
+              PRESS START TO CONTINUE
+            </p>
+          </div>
+
         </div>
-
-        {/* Particle burst effect */}
-        {[...Array(12)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-3 h-3 rounded-full"
-            style={{
-              background: icons[i % icons.length].color,
-              left: `${50 + Math.cos((i / 12) * Math.PI * 2) * 35}%`,
-              top: `${50 + Math.sin((i / 12) * Math.PI * 2) * 35}%`,
-              animation: `particle-burst 2s ease-out infinite`,
-              animationDelay: `${i * 0.1}s`,
-              boxShadow: `0 0 20px ${icons[i % icons.length].color}`
-            }}
-          />
-        ))}
       </div>
-
-      <style>{`
-        @keyframes float-up {
-          0% { 
-            transform: translateY(0) rotate(0deg);
-            opacity: 1;
-          }
-          100% { 
-            transform: translateY(-300px) rotate(360deg);
-            opacity: 0;
-          }
-        }
-        
-        @keyframes particle-burst {
-          0%, 100% { 
-            transform: scale(0.5) translateY(0);
-            opacity: 0.3;
-          }
-          50% { 
-            transform: scale(1.5) translateY(-20px);
-            opacity: 1;
-          }
-        }
-      `}</style>
     </div>
   );
 };

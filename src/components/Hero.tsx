@@ -25,33 +25,33 @@ const Hero = () => {
       
       <div className="max-w-6xl mx-auto text-center relative z-10">
         <div>
-          <div className="inline-block glass-strong px-6 py-3 rounded-full mb-8 glow-on-hover border border-primary/20 shimmer-effect">
+          <div className="inline-block glass-strong px-6 py-3 mb-8 glow-on-hover border-4 border-primary shimmer-effect">
             <div className="flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-primary animate-pulse" />
-              <p className="text-sm font-semibold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                Welcome to my portfolio
+              <Sparkles className="w-4 h-4 text-primary animate-pixel-bounce" />
+              <p className="text-sm font-pixel text-primary">
+                &gt;&gt; WELCOME
               </p>
             </div>
           </div>
           
           <h1 
             ref={titleRef}
-            className={`text-5xl md:text-7xl lg:text-8xl font-display font-black mb-6 leading-tight transition-all duration-1000 px-4 ${
+            className={`text-3xl md:text-4xl lg:text-5xl font-pixel mb-8 leading-tight transition-all duration-1000 px-4 ${
               titleVisible ? 'reveal-up opacity-100' : 'opacity-0'
             }`}
           >
-            <span className="gradient-text inline-block hover:scale-105 transition-transform duration-300">
+            <span className="gradient-text inline-block hover:scale-105 transition-all">
               Anas M. Wagih
             </span>
           </h1>
           
           <h2 
             ref={subtitleRef}
-            className={`text-xl md:text-3xl lg:text-4xl font-display font-semibold mb-6 text-foreground/90 transition-all duration-1000 px-4 ${
+            className={`text-base md:text-xl font-sans mb-8 text-secondary transition-all duration-1000 px-4 ${
               subtitleVisible ? 'reveal-up opacity-100' : 'opacity-0'
             }`}
           >
-            Electronics & Embedded Systems Engineer
+            &gt; Electronics & Embedded Systems Engineer
           </h2>
           
           
@@ -63,25 +63,25 @@ const Hero = () => {
           >
             <Button
               size="lg"
-              className="glass-strong hover:scale-110 transition-all group relative overflow-hidden glow-on-hover border border-primary/20 shimmer-effect"
+              className="glass-strong hover:scale-110 transition-all group relative overflow-hidden glow-on-hover border-4 border-primary font-pixel"
               onClick={(e) => {
                 createRipple(e);
                 scrollToSection("projects");
               }}
             >
-              View My Work
-              <ArrowDown className="ml-2 w-4 h-4 group-hover:translate-y-1 group-hover:animate-bounce transition-transform" />
+              &gt; VIEW WORK
+              <ArrowDown className="ml-2 w-4 h-4 group-hover:translate-y-1 animate-pixel-bounce transition-transform" />
             </Button>
             <Button
               size="lg"
               variant="outline"
-              className="glass border-2 border-secondary/30 hover:scale-110 transition-all relative overflow-hidden glow-on-hover hover:border-secondary/50"
+              className="glass border-4 border-secondary hover:scale-110 transition-all relative overflow-hidden glow-on-hover hover:border-accent font-pixel"
               onClick={(e) => {
                 createRipple(e);
                 scrollToSection("contact");
               }}
             >
-              Get In Touch
+              &gt; CONTACT
             </Button>
           </div>
           
@@ -90,37 +90,37 @@ const Hero = () => {
               href="https://github.com/AnasWagih25"
               target="_blank"
               rel="noopener noreferrer"
-              className="glass px-6 py-3 rounded-full hover:scale-110 transition-all hover:shadow-xl hover:shadow-primary/30 flex items-center gap-2 relative overflow-hidden group"
+              className="glass px-6 py-3 border-4 border-primary hover:scale-110 transition-all glow-on-hover flex items-center gap-2 relative overflow-hidden group"
               onClick={(e) => createRipple(e)}
             >
-              <Github className="w-5 h-5 group-hover:rotate-12 transition-transform" />
-              <span className="font-medium">GitHub</span>
+              <Github className="w-5 h-5" />
+              <span className="font-sans text-lg">GitHub</span>
             </a>
             <a
               href="https://linkedin.com/in/AnasWagih"
               target="_blank"
               rel="noopener noreferrer"
-              className="glass px-6 py-3 rounded-full hover:scale-110 transition-all hover:shadow-xl hover:shadow-secondary/30 flex items-center gap-2 relative overflow-hidden group"
+              className="glass px-6 py-3 border-4 border-secondary hover:scale-110 transition-all glow-on-hover flex items-center gap-2 relative overflow-hidden group"
               onClick={(e) => createRipple(e)}
             >
-              <Linkedin className="w-5 h-5 group-hover:rotate-12 transition-transform" />
-              <span className="font-medium">LinkedIn</span>
+              <Linkedin className="w-5 h-5" />
+              <span className="font-sans text-lg">LinkedIn</span>
             </a>
             <a
               href="mailto:anaswagih35@gmail.com"
-              className="glass px-6 py-3 rounded-full hover:scale-110 transition-all hover:shadow-xl hover:shadow-accent/30 flex items-center gap-2 relative overflow-hidden group"
+              className="glass px-6 py-3 border-4 border-accent hover:scale-110 transition-all glow-on-hover flex items-center gap-2 relative overflow-hidden group"
               onClick={(e) => createRipple(e)}
             >
-              <Mail className="w-5 h-5 group-hover:rotate-12 transition-transform" />
-              <span className="font-medium">Email</span>
+              <Mail className="w-5 h-5" />
+              <span className="font-sans text-lg">Email</span>
             </a>
             <a
               href="tel:+201020065576"
-              className="glass px-6 py-3 rounded-full hover:scale-110 transition-all hover:shadow-xl hover:shadow-primary/30 flex items-center gap-2 relative overflow-hidden group"
+              className="glass px-6 py-3 border-4 border-primary hover:scale-110 transition-all glow-on-hover flex items-center gap-2 relative overflow-hidden group"
               onClick={(e) => createRipple(e)}
             >
-              <Phone className="w-5 h-5 group-hover:rotate-12 transition-transform" />
-              <span className="font-medium">Call</span>
+              <Phone className="w-5 h-5" />
+              <span className="font-sans text-lg">Call</span>
             </a>
           </div>
         </div>

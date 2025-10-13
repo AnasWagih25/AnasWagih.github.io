@@ -19,18 +19,18 @@ const Contact = () => {
       <div className="max-w-4xl mx-auto relative z-10">
         <h2 
           ref={headerRef}
-          className={`text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6 text-center transition-all duration-1000 ${
+          className={`text-2xl md:text-3xl font-pixel mb-6 text-center transition-all duration-1000 ${
             headerVisible ? 'reveal-up opacity-100' : 'opacity-0'
           }`}
         >
           <span className="gradient-text inline-flex items-center gap-3">
-            <MessageCircle className="w-10 h-10 animate-pulse" />
-            Let's Connect
+            <MessageCircle className="w-8 h-8 animate-pixel-bounce" />
+            &gt;&gt; CONNECT
           </span>
         </h2>
         
-        <p className="text-center text-muted-foreground text-lg mb-12 max-w-2xl mx-auto opacity-90">
-          I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
+        <p className="text-center text-muted-foreground font-sans text-base mb-12 max-w-2xl mx-auto">
+          &gt; Open to new projects and opportunities
         </p>
         
         <div className="glass-strong rounded-3xl p-8 md:p-12 border border-primary/10 glow-on-hover">
