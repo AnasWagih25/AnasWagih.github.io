@@ -1,4 +1,4 @@
-import { Briefcase, Calendar, Zap } from "lucide-react";
+import { Briefcase, Calendar } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useRipple } from "@/hooks/useRipple";
 
@@ -32,20 +32,17 @@ const Experience = () => {
 
   return (
     <section id="experience" className="py-20 px-4 relative">
-      {/* Section glow */}
-      <div className="absolute top-1/2 right-0 w-96 h-96 bg-secondary/10 rounded-full blur-3xl opacity-50" />
-      
       <div className="max-w-6xl mx-auto relative z-10">
         <h2 
           ref={headerRef}
-          className={`text-4xl md:text-5xl font-display font-bold mb-12 text-center transition-all duration-1000 ${
+          className={`text-3xl md:text-4xl font-pixel mb-12 text-center transition-all duration-1000 ${
             headerVisible ? 'reveal-scale opacity-100' : 'opacity-0'
           }`}
         >
-          <span className="gradient-text">Experience</span>
+          <span className="gradient-text">&gt;&gt; EXPERIENCE</span>
         </h2>
         
-        <div className="space-y-8">
+        <div className="space-y-6">
           {experiences.map((exp, index) => {
             const ExperienceCard = () => {
               const { ref, isVisible } = useScrollReveal();
@@ -53,36 +50,44 @@ const Experience = () => {
               return (
                 <div
                   ref={ref}
-                  className={`gradient-border rounded-3xl p-8 interactive-hover group transition-all duration-1000 ${
+                  className={`glass-strong p-8 interactive-hover group transition-all duration-1000 relative ${
                     isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
                   }`}
                   style={{ transitionDelay: `${index * 150}ms` }}
                   onClick={(e) => createRipple(e)}
                 >
-              <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-6">
-                <div className="flex-1">
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className={`p-2 rounded-lg bg-${exp.color}/20`}>
-                      <Briefcase className={`w-5 h-5 text-${exp.color}`} />
+                  {/* Pixel corners */}
+                  <div className="absolute -top-2 -left-2 w-4 h-4 bg-primary" />
+                  <div className="absolute -top-2 -right-2 w-4 h-4 bg-accent" />
+                  <div className="absolute -bottom-2 -left-2 w-4 h-4 bg-secondary" />
+                  <div className="absolute -bottom-2 -right-2 w-4 h-4 bg-primary" />
+                  
+                  <div className="relative z-10">
+                    <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-6">
+                      <div className="flex-1">
+                        <div className="flex items-center gap-3 mb-3">
+                          <div className={`p-2 border-2 border-${exp.color} bg-${exp.color}/20`}>
+                            <Briefcase className={`w-5 h-5 text-${exp.color}`} />
+                          </div>
+                          <h3 className="text-xl font-pixel">{exp.role}</h3>
+                        </div>
+                        <p className={`text-sm font-pixel text-${exp.color} mb-2`}>{exp.company}</p>
+                      </div>
+                      <div className="flex items-center gap-2 text-muted-foreground mt-2 md:mt-0 font-pixel text-xs">
+                        <Calendar className="w-4 h-4" />
+                        <span>{exp.period}</span>
+                      </div>
                     </div>
-                    <h3 className="text-2xl font-display font-semibold">{exp.role}</h3>
+                    
+                    <ul className="space-y-3">
+                      {exp.description.map((item, i) => (
+                        <li key={i} className="flex gap-3 text-muted-foreground leading-relaxed text-sm">
+                          <span className={`text-${exp.color} font-pixel text-lg`}>▪</span>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                  <p className={`text-lg font-medium text-${exp.color} mb-2`}>{exp.company}</p>
-                </div>
-                <div className="flex items-center gap-2 text-muted-foreground mt-2 md:mt-0">
-                  <Calendar className="w-4 h-4" />
-                  <span className="font-medium">{exp.period}</span>
-                </div>
-              </div>
-              
-              <ul className="space-y-3">
-                {exp.description.map((item, i) => (
-                  <li key={i} className="flex gap-3 text-muted-foreground leading-relaxed">
-                    <span className={`text-${exp.color} font-bold mt-1`}>•</span>
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
                 </div>
               );
             };

@@ -1,4 +1,4 @@
-import { GraduationCap, MapPin, Sparkle } from "lucide-react";
+import { GraduationCap, MapPin } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useRipple } from "@/hooks/useRipple";
 
@@ -10,126 +10,133 @@ const About = () => {
 
   return (
     <section id="about" className="py-20 px-4 relative">
-      {/* Section glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-primary/10 rounded-full blur-3xl opacity-50" />
-      
       <div className="max-w-6xl mx-auto relative z-10">
         <h2 
           ref={headerRef}
-          className={`text-4xl md:text-5xl font-display font-bold mb-12 text-center transition-all duration-1000 ${
+          className={`text-3xl md:text-4xl font-pixel mb-12 text-center transition-all duration-1000 ${
             headerVisible ? 'reveal-up opacity-100' : 'opacity-0'
           }`}
         >
-          <span className="gradient-text">About Me</span>
+          <span className="gradient-text">&gt;&gt; ABOUT ME</span>
         </h2>
         
         <div className="grid md:grid-cols-2 gap-6">
           <div 
             ref={educationRef}
-            className={`gradient-border rounded-3xl p-8 interactive-hover group transition-all duration-1000 ${
+            className={`glass-strong p-8 interactive-hover group transition-all duration-1000 relative ${
               educationVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-20'
             }`}
           >
-            <div className="flex items-center gap-3 mb-4">
-              <div className="p-3 rounded-xl bg-primary/20">
+            {/* Pixel corners */}
+            <div className="absolute -top-2 -left-2 w-4 h-4 bg-primary" />
+            <div className="absolute -top-2 -right-2 w-4 h-4 bg-secondary" />
+            <div className="absolute -bottom-2 -left-2 w-4 h-4 bg-secondary" />
+            <div className="absolute -bottom-2 -right-2 w-4 h-4 bg-accent" />
+            
+            <div className="flex items-center gap-3 mb-6 relative z-10">
+              <div className="p-3 bg-primary/20 border-2 border-primary">
                 <GraduationCap className="w-6 h-6 text-primary" />
               </div>
-              <h3 className="text-2xl font-display font-semibold">Education</h3>
+              <h3 className="text-xl font-pixel">EDUCATION</h3>
             </div>
             
-            <div className="space-y-6">
-              <div className="border-l-2 border-primary/30 pl-6 pb-6">
-                <div className="flex items-start justify-between mb-2">
-                  <h4 className="font-semibold text-lg">B.Sc. in Electronics and Communication Engineering</h4>
-                </div>
-                <p className="text-secondary font-medium mb-2">Arab Academy for Science, Technology, and Maritime Transport</p>
-                <div className="flex items-center gap-2 text-muted-foreground mb-3">
-                  <MapPin className="w-4 h-4" />
-                  <span>Egypt</span>
+            <div className="space-y-6 relative z-10">
+              <div className="border-l-4 border-primary pl-6 pb-6">
+                <h4 className="font-pixel text-sm mb-3">B.SC. ECE</h4>
+                <p className="text-secondary font-pixel text-xs mb-2">ARAB ACADEMY</p>
+                <div className="flex items-center gap-2 text-muted-foreground text-xs mb-3 font-pixel">
+                  <MapPin className="w-3 h-3" />
+                  <span>EGYPT</span>
                   <span className="mx-2">•</span>
-                  <span>09/2022 – 02/2027</span>
+                  <span>2022-2027</span>
                 </div>
-                <p className="text-sm text-muted-foreground mb-2">ABET-accredited Degree, USA</p>
-                <div className="text-sm text-muted-foreground">
-                  <p className="font-medium mb-1">Key Coursework:</p>
-                  <p>Solid State Physics, Electrical Circuit Analysis, Machine Learning, Microprocessors, Embedded Systems</p>
+                <p className="text-xs text-muted-foreground mb-2">ABET-ACCREDITED, USA</p>
+                <div className="text-xs text-muted-foreground">
+                  <p className="font-pixel mb-1">&gt; COURSEWORK:</p>
+                  <p>Physics, Circuits, ML, Microprocessors, Embedded Systems</p>
                 </div>
               </div>
               
-              <div className="border-l-2 border-secondary/30 pl-6">
-                <h4 className="font-semibold text-lg mb-2">International General Certificate of Secondary Education (IGCSE)</h4>
-                <p className="text-secondary font-medium mb-2">Narmer Language School</p>
-                <div className="flex items-center gap-2 text-muted-foreground">
-                  <MapPin className="w-4 h-4" />
-                  <span>Cairo, Egypt</span>
+              <div className="border-l-4 border-secondary pl-6">
+                <h4 className="font-pixel text-sm mb-2">IGCSE</h4>
+                <p className="text-secondary font-pixel text-xs mb-2">NARMER SCHOOL</p>
+                <div className="flex items-center gap-2 text-muted-foreground text-xs font-pixel">
+                  <MapPin className="w-3 h-3" />
+                  <span>CAIRO</span>
                   <span className="mx-2">•</span>
-                  <span>09/2019 – 07/2022</span>
+                  <span>2019-2022</span>
                 </div>
-                <p className="text-sm text-muted-foreground mt-2">Cambridge & Pearson Edexcel, UK</p>
+                <p className="text-xs text-muted-foreground mt-2">CAMBRIDGE & PEARSON, UK</p>
               </div>
             </div>
           </div>
           
           <div 
             ref={factsRef}
-            className={`gradient-border rounded-3xl p-8 interactive-hover group transition-all duration-1000 ${
+            className={`glass-strong p-8 interactive-hover group transition-all duration-1000 relative ${
               factsVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-20'
             }`}
           >
-            <h3 className="text-2xl font-display font-semibold mb-6 gradient-text-secondary">Quick Facts</h3>
+            {/* Pixel corners */}
+            <div className="absolute -top-2 -left-2 w-4 h-4 bg-accent" />
+            <div className="absolute -top-2 -right-2 w-4 h-4 bg-primary" />
+            <div className="absolute -bottom-2 -left-2 w-4 h-4 bg-primary" />
+            <div className="absolute -bottom-2 -right-2 w-4 h-4 bg-secondary" />
             
-            <div className="space-y-6">
+            <h3 className="text-xl font-pixel mb-6 gradient-text-secondary relative z-10">&gt;&gt; STATS</h3>
+            
+            <div className="space-y-6 relative z-10">
               <div className="group">
-                <p className="text-muted-foreground mb-2 text-sm">Location</p>
-                <p className="text-lg font-medium flex items-center gap-2 group-hover:translate-x-2 transition-transform">
-                  <MapPin className="w-5 h-5 text-primary group-hover:scale-110 transition-transform" />
-                  Cairo, Egypt
+                <p className="text-muted-foreground mb-2 text-xs font-pixel">&gt; LOCATION</p>
+                <p className="text-sm font-pixel flex items-center gap-2 group-hover:translate-x-2 transition-transform">
+                  <MapPin className="w-4 h-4 text-primary group-hover:scale-110 transition-transform" />
+                  CAIRO, EGYPT
                 </p>
               </div>
               
               <div>
-                <p className="text-muted-foreground mb-3 text-sm">Focus Areas</p>
+                <p className="text-muted-foreground mb-3 text-xs font-pixel">&gt; FOCUS AREAS</p>
                 <div className="flex flex-wrap gap-2">
                   <span 
-                    className="glass px-4 py-2 rounded-full text-sm font-medium hover:scale-110 hover:bg-primary/20 transition-all cursor-default glow-on-hover relative overflow-hidden"
+                    className="glass px-4 py-2 text-xs font-pixel hover:scale-110 hover:bg-primary/20 transition-all cursor-default glow-on-hover relative overflow-hidden border-2 border-primary/50"
                     onClick={(e) => createRipple(e)}
                   >
-                    IoT Development
+                    IOT DEV
                   </span>
                   <span 
-                    className="glass px-4 py-2 rounded-full text-sm font-medium hover:scale-110 hover:bg-secondary/20 transition-all cursor-default glow-on-hover relative overflow-hidden"
+                    className="glass px-4 py-2 text-xs font-pixel hover:scale-110 hover:bg-secondary/20 transition-all cursor-default glow-on-hover relative overflow-hidden border-2 border-secondary/50"
                     onClick={(e) => createRipple(e)}
                   >
-                    Embedded Systems
+                    EMBEDDED
                   </span>
                   <span 
-                    className="glass px-4 py-2 rounded-full text-sm font-medium hover:scale-110 hover:bg-accent/20 transition-all cursor-default glow-on-hover relative overflow-hidden"
+                    className="glass px-4 py-2 text-xs font-pixel hover:scale-110 hover:bg-accent/20 transition-all cursor-default glow-on-hover relative overflow-hidden border-2 border-accent/50"
                     onClick={(e) => createRipple(e)}
                   >
-                    AI Integration
+                    AI
                   </span>
                   <span 
-                    className="glass px-4 py-2 rounded-full text-sm font-medium hover:scale-110 hover:bg-primary/20 transition-all cursor-default glow-on-hover relative overflow-hidden"
+                    className="glass px-4 py-2 text-xs font-pixel hover:scale-110 hover:bg-primary/20 transition-all cursor-default glow-on-hover relative overflow-hidden border-2 border-primary/50"
                     onClick={(e) => createRipple(e)}
                   >
-                    Smart Home
+                    SMART HOME
                   </span>
                 </div>
               </div>
               
               <div>
-                <p className="text-muted-foreground mb-2">Interests</p>
-                <p className="text-sm leading-relaxed">
+                <p className="text-muted-foreground mb-2 text-xs font-pixel">&gt; INTERESTS</p>
+                <p className="text-xs leading-relaxed">
                   Building intelligent embedded systems that leverage AI and IoT technologies to solve real-world problems.
-                  Passionate about the intersection of hardware and software, creating seamless experiences in smart devices.
+                  Passionate about the intersection of hardware and software.
                 </p>
               </div>
               
               <div>
-                <p className="text-muted-foreground mb-2">Currently</p>
-                <p className="text-sm leading-relaxed">
+                <p className="text-muted-foreground mb-2 text-xs font-pixel">&gt; CURRENTLY</p>
+                <p className="text-xs leading-relaxed">
                   R&D Intern at Clixsys, developing Matter-based smart home solutions and AI-powered mobile applications.
-                  Pursuing Deep Learning Specialization to enhance AI capabilities in embedded applications.
+                  Pursuing Deep Learning Specialization.
                 </p>
               </div>
             </div>
